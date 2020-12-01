@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     Functions.cpp \
+    User.cpp \
     main.cpp \
     mainmenu.cpp \
     mainwindow.cpp
