@@ -7,13 +7,167 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>497</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow{
+	background-color:#3d3d3d;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>60</y>
+      <width>251</width>
+      <height>361</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="loginLayout">
+     <item>
+      <widget class="QLineEdit" name="loginLogin">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	width:30%;
+	height:30%;
+	background-color:#262626;
+	color:white;
+	border:none;
+}</string>
+       </property>
+       <property name="placeholderText">
+        <string>login</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="loginPassword">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	width:30%;
+	height:30%;
+	background-color:#262626;
+	color:white;
+	border:none;
+}</string>
+       </property>
+       <property name="placeholderText">
+        <string>password</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="loginConfirm">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	color : white;
+	background-color: #262626;
+	height : 100%;
+	width:100%;
+}
+QPushButton:hover{
+	color : white;
+	background-color: #5e5e5e;
+	height : 100%;
+	width:100%;
+}
+QVBoxLayout{
+	background-color:white;
+}</string>
+       </property>
+       <property name="text">
+        <string>войти</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>60</y>
+      <width>251</width>
+      <height>361</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="registerLayout">
+     <item>
+      <widget class="QLineEdit" name="regLogin">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	width:30%;
+	height:30%;
+	background-color:#262626;
+	color:white;
+	border:none;
+}</string>
+       </property>
+       <property name="placeholderText">
+        <string>login</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="regPassword">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	width:30%;
+	height:30%;
+	background-color:#262626;
+	color:white;
+	border:none;
+}</string>
+       </property>
+       <property name="placeholderText">
+        <string>password</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="ifMaster">
+       <property name="styleSheet">
+        <string notr="true">QRadioButton{
+	color:white;
+}</string>
+       </property>
+       <property name="text">
+        <string>вы владелец?</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="regConfirm">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	color : white;
+	background-color: #262626;
+	height : 100%;
+	width:100%;
+}
+QPushButton:hover{
+	color : white;
+	background-color: #5e5e5e;
+	height : 100%;
+	width:100%;
+}</string>
+       </property>
+       <property name="text">
+        <string>зарегестрироваться</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
  </widget>
  <resources/>
  <connections/>
