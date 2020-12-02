@@ -24,7 +24,7 @@ void MainWindow::on_loginConfirm_clicked()
     std::string login = ui->loginLogin->text().toStdString();
     std::string password = ui->loginPassword->text().toStdString();
 
-    if(CheckUsers(Users, login, password) > 0){
+    if(CheckUsers(Users, password, login) > 0){
          QMessageBox::information(this, "вход", "вы успешно вошли");
     }
     else{
@@ -42,7 +42,7 @@ void MainWindow::on_regConfirm_clicked()
     std::string login = ui->regLogin->text().toStdString();
     std::string password = ui->regPassword->text().toStdString();
     if(login != "" && password != "" && login != " " && password != " "){
-        if(CheckUsers(Users, login, password) == 0){
+        if(CheckUsers(Users, password, login) == 0){
             int number = getNumberOfUsers(Users);
             Users[number].login = login;
             Users[number].password = password;
