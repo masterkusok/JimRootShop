@@ -74,6 +74,22 @@
        </widget>
       </item>
       <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
        <widget class="QPushButton" name="loginConfirm">
         <property name="font">
          <font>
@@ -89,14 +105,14 @@
         <property name="styleSheet">
          <string notr="true">QPushButton{
 	color : white;
-	background-color: #262626;
+	background-color: #40e649;
 	border-radius: 25px;
 	height : 100%;
 	width:100%;
 }
 QPushButton:hover{
 	color : white;
-	background-color: #5e5e5e;
+	background-color: #35bd3c;
 	height : 100%;
 	width:100%;
 }
@@ -117,16 +133,19 @@ QVBoxLayout{
     <item row="0" column="1">
      <layout class="QVBoxLayout" name="registerLayout" stretch="0,0,0,0">
       <property name="spacing">
-       <number>6</number>
+       <number>7</number>
       </property>
       <property name="leftMargin">
        <number>5</number>
+      </property>
+      <property name="topMargin">
+       <number>13</number>
       </property>
       <property name="rightMargin">
        <number>5</number>
       </property>
       <property name="bottomMargin">
-       <number>29</number>
+       <number>0</number>
       </property>
       <item>
        <widget class="QLineEdit" name="regLogin">
@@ -216,14 +235,14 @@ QVBoxLayout{
         <property name="styleSheet">
          <string notr="true">QPushButton{
 	color : white;
-	background-color: #00C209;
+	background-color: #40e649;
 	border-radius: 25px;
 	height : 100%;
 	width:100%;
 }
 QPushButton:hover{
 	color : white;
-	background-color: #00A908;
+	background-color: #35bd3c;
 	height : 100%;
 	width:100%;
 }</string>
