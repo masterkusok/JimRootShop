@@ -141,6 +141,7 @@
 	border-radius: 25px;
 	height : 100%;
 	width:100%;
+	transition:top 1s ease-out 0.5s;
 }
 QPushButton:hover{
 	color : white;

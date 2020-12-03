@@ -1,11 +1,22 @@
 #include "Header.h"
 #include <iostream>
-int getNumberOfUsers(User Arr[]){
-    for(int i = 0; i < 100; i++){
-        if(Arr[i].login == " "){
-            return i;
-        }
+#include <QMessageBox>
+int getNumberOfUsers(){
+//    for(int i = 0; i < 100; i++){
+//        if(Arr[i].login == " "){
+//            return i;
+//        }
+//    }
+    std::ifstream ReadFile;
+    std::string temp;
+    int n;
+    ReadFile.open("Files\\Users.csv");
+    for(int i = 0;ReadFile.good();i++){
+        getline(ReadFile,temp,'\n');
+        n = i + 1;
     }
+    ReadFile.close();
+    return n;
 }
 
 void ParseUsers(User Arr[]){
@@ -28,11 +39,11 @@ void ParseUsers(User Arr[]){
 
 int CheckUsers(User Arr[], std::string password, std::string login){
     bool checking = true;
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < getNumberOfUsers(); i++){
         if(Arr[i].login == login && Arr[i].password == password){
             checking = false;
-            break;
             return Arr[i].role;
+            break;
         }
     }
     if(checking){
