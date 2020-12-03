@@ -13,7 +13,8 @@ class mainMenu : public QWidget
 public:
     explicit mainMenu(QWidget *parent = nullptr);
     ~mainMenu();
-
+public slots:
+    void recieveData(User user);
 private:
     Ui::mainMenu *ui;
 };

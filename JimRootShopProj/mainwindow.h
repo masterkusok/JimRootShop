@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "Header.h"
+#include "mainmenu.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -10,16 +11,19 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+signals:
+    void sendData(User user);
 private slots:
     void on_loginConfirm_clicked();
-
+    void onLoginSend();
     void on_regConfirm_clicked();
 
 private:
     Ui::MainWindow *ui;
+    mainMenu *MainMenu;
 };
 #endif // MAINWINDOW_H

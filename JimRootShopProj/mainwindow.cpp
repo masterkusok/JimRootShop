@@ -8,11 +8,17 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 { 
     ui->setupUi(this);
+    MainMenu = new mainMenu();
+    connect(ui->loginConfirm,SIGNAL(clicked()),this,SLOT(onLoginSend()));
+    connect(this,SIGNAL(sendData(User)), MainMenu,SLOT(recieveData(User)));
 }
-
+User UserThatLogined;
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+void MainWindow::onLoginSend(){
+    emit sendData(UserThatLogined);
 }
 //нажатие на кнопку войти
 void MainWindow::on_loginConfirm_clicked()
@@ -24,7 +30,8 @@ void MainWindow::on_loginConfirm_clicked()
     std::string password = ui->loginPassword->text().toStdString();
 
     if(CheckUsers(Users, password, login) > 0){
-         QMessageBox::information(this, "вход", "Вы успешно вошли");
+        UserThatLogined = getUserInformationByLoginAndPassword(login,password);
+        MainMenu->show();
     }
     else{
         if(login != "" && password != "" && login != " " && password != " "){
@@ -50,6 +57,8 @@ void MainWindow::on_regConfirm_clicked()
             Users[number].id = number;
             if(ui->ifMaster->isChecked()){
                 Users[number].role = 1;
+                this->hide();
+
             }
             else{
                 Users[number].role = 2;
@@ -58,9 +67,9 @@ void MainWindow::on_regConfirm_clicked()
            WriteFile.open("Files\\Users.csv", std::ios::app);
            WriteFile << login << " " << password << " " << Users[number].role << std::endl;
            WriteFile.close();
-           QMessageBox::information(this, "регистрация", "Вы успешно зарегестрированы");
            ui->regLogin->clear();
            ui->regPassword->clear();
+           QMessageBox::information(this, "регистрация", "Вы успешно зарегестрированы");
         }
         else{
             QMessageBox::information(this, "регистрация", "Пользователь с таким логином уже зарегестрирован");

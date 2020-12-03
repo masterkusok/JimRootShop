@@ -12,4 +12,6 @@ int getNumberOfUsers();
 void ParseUsers(User Arr[]);
 //функция для поиска совпадений по логину и паролю, потом она будет изменяться так что не трогай ее
 int CheckUsers(User Arr[], std::string password, std::string login);
+//Функция для получения всей информации о пользователе по логину и паролю
+User getUserInformationByLoginAndPassword(std::string login,std::string password);
 #endif // HEADER_H

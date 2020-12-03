@@ -50,3 +50,16 @@ int CheckUsers(User Arr[], std::string password, std::string login){
         return 0;
     }
 }
+User getUserInformationByLoginAndPassword(std::string login,std::string password){
+    User user,Users[getNumberOfUsers()];
+    ParseUsers(Users);
+    for(int i = 0;i < getNumberOfUsers();i++){
+        if(Users[i].login == login && Users[i].password == password){
+            user.id = Users[i].id;
+            user.login = Users[i].login;
+            user.password = Users[i].password;
+            user.role = Users[i].role;
+        }
+    }
+    return user;
+}
