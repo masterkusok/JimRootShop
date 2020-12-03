@@ -11,16 +11,19 @@ CONFIG += c++11
 SOURCES += \
     Functions.cpp \
     User.cpp \
+    katalog.cpp \
     main.cpp \
     mainmenu.cpp \
     mainwindow.cpp
 
 HEADERS += \
     Header.h \
+    katalog.h \
     mainmenu.h \
     mainwindow.h
 
 FORMS += \
+    katalog.ui \
     mainmenu.ui \
     mainwindow.ui
 

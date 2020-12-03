@@ -1,7 +1,6 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 #include "Header.h"
-
 namespace Ui {
 class mainMenu;
 }
