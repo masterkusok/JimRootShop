@@ -16,10 +16,8 @@ mainMenu::~mainMenu()
     delete ui;
 }
 void mainMenu::recieveData(User user){
-    if(user.role == 1){
-        std::cout << 1;
-    }
     if(user.role == 2){
-        std::cout << 2;
+        ui->StatsBtn->hide();
+        ui->User_ControlBtn->hide();
     }
 }

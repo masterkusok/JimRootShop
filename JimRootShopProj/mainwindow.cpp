@@ -31,6 +31,7 @@ void MainWindow::on_loginConfirm_clicked()
 
     if(CheckUsers(Users, password, login) > 0){
         UserThatLogined = getUserInformationByLoginAndPassword(login,password);
+        this->hide();
         MainMenu->show();
     }
     else{
