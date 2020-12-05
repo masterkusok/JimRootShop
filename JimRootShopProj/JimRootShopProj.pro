@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     Functions.cpp \
+    Instrument.cpp \
     User.cpp \
     katalog.cpp \
     main.cpp \

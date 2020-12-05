@@ -2,11 +2,6 @@
 #include <iostream>
 #include <QMessageBox>
 int getNumberOfUsers(){
-//    for(int i = 0; i < 100; i++){
-//        if(Arr[i].login == " "){
-//            return i;
-//        }
-//    }
     std::ifstream ReadFile;
     std::string temp;
     int n;
@@ -37,6 +32,75 @@ void ParseUsers(User Arr[]){
     ReadFile.close();
 }
 
+int getNumberOfGuitars(Instrument Arr[]){
+    for(int i = 0; i < 30; i++){
+        if(Arr[i].name == " "){
+            return i;
+            break;
+        }
+    }
+}
+void ParseGuitars(Instrument Arr[]){
+    std::ifstream ReadFile;
+        int num = 0;
+        ReadFile.open("Files/guitars.csv");
+        if (ReadFile.is_open()) {
+            //переменная для хранения количества строк в описании гитары
+            int num_of_desc_strings;
+            //переменная для хранения строк из файла
+            std::string reader;
+
+            while (ReadFile.good()) {
+                    //считываем и вносим бренд
+
+                std::getline(ReadFile, reader);
+                if (reader == "") {
+                    break;
+                }
+                else {
+                    Arr[num].brand = reader;
+
+                    //считываем и вносим форму
+                    std::getline(ReadFile, reader);
+                    Arr[num].shape = reader;
+
+                    //считываем и вносим название модели
+                    std::getline(ReadFile, reader);
+                    Arr[num].name = reader;
+
+                    //считываем и вносим прайс
+                    std::getline(ReadFile, reader);
+                    Arr[num].price = std::stoi(reader);
+
+                    //считываем и вносим материал
+                    std::getline(ReadFile, reader);
+                    Arr[num].material = reader;
+
+                    //считываем и вносим путь к изображению
+                    std::getline(ReadFile, reader);
+                    Arr[num].img_path = reader;
+
+                    //получаем количество строк и считываем описание
+                    std::string full_description;
+
+                    std::getline(ReadFile, reader);
+                    num_of_desc_strings = std::stoi(reader);
+                    for (int i = 0; i < num_of_desc_strings; i++) {
+                        std::getline(ReadFile, reader);
+                        full_description = full_description+ reader + "\n";
+                    }
+                    Arr[num].descritp = full_description;
+                    Arr[num].id = num;
+                    num++;
+                }
+
+            }
+
+        }
+
+        ReadFile.close();
+}
+
 int CheckUsers(User Arr[], std::string password, std::string login){
     bool checking = true;
     for(int i = 0; i < getNumberOfUsers(); i++){
@@ -50,6 +114,9 @@ int CheckUsers(User Arr[], std::string password, std::string login){
         return 0;
     }
 }
+
+
+
 User getUserInformationByLoginAndPassword(std::string login,std::string password){
     User user,Users[getNumberOfUsers()];
     ParseUsers(Users);

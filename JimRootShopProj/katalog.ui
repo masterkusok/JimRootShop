@@ -26,29 +26,6 @@
 	background-color:#3d3d3d;
 }</string>
   </property>
-  <widget class="QScrollArea" name="scrollAreaKatalog">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>110</y>
-     <width>691</width>
-     <height>391</height>
-    </rect>
-   </property>
-   <property name="widgetResizable">
-    <bool>true</bool>
-   </property>
-   <widget class="QWidget" name="scrollAreaWidgetContents">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>689</width>
-      <height>389</height>
-     </rect>
-    </property>
-   </widget>
-  </widget>
  </widget>
  <resources/>
  <connections/>
