@@ -6,6 +6,7 @@ GuitarPage::GuitarPage(QWidget *parent) :
     ui(new Ui::GuitarPage)
 {
     ui->setupUi(this);
+    //тут я храню номер, но это пока что рабочий костыль, забей
     int number = 0;
 
     Instrument Guitars[30];

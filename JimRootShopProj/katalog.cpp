@@ -56,10 +56,12 @@ Katalog::Katalog(QWidget *parent) :
              scrollingLayout->addWidget(btn, i, 4);
         }
     }
+    //тут я приязываю к каждой кнопке клик
     for(int i = 0; i < number; i++){
         QString buttonNum = QString::number(i);
         QPushButton *button = findChild<QPushButton*>("button" + buttonNum);
         if(button!=nullptr){
+            //это нужно что бы в слоте получать номер гитары на которую нажали
             button->setProperty("index", i);
             QObject::connect(button, SIGNAL(clicked()), this,  SLOT(buttonClicked()));
         }
@@ -74,8 +76,11 @@ Katalog::Katalog(QWidget *parent) :
 }
 
 void Katalog::buttonClicked(){
+    //получаем эту самую циферку, и открываем окно
     QPushButton *button = qobject_cast<QPushButton*>(sender());
+    // вот в этой переменной ты можешь найти интовую циферку, которую вместе с юзером нужно в гитарпейдж перекинуть
     guitar_index = button->property("index").toInt();
+
     GuitarPage currentGuitar;
     User user;
     this->hide();
