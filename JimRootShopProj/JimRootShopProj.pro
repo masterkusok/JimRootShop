@@ -12,6 +12,7 @@ SOURCES += \
     Functions.cpp \
     Instrument.cpp \
     User.cpp \
+    guitarpage.cpp \
     katalog.cpp \
     main.cpp \
     mainmenu.cpp \
@@ -19,11 +20,13 @@ SOURCES += \
 
 HEADERS += \
     Header.h \
+    guitarpage.h \
     katalog.h \
     mainmenu.h \
     mainwindow.h
 
 FORMS += \
+    guitarpage.ui \
     katalog.ui \
     mainmenu.ui \
     mainwindow.ui

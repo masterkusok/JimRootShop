@@ -5,11 +5,12 @@
 #include <QLayout>
 #include <QScrollArea>
 #include <QLabel>
+
 Katalog::Katalog(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Katalog)
 {
-
+    btnNumber = NULL;
     ui->setupUi(this);
 
     Instrument Guitars[30];
@@ -23,7 +24,6 @@ Katalog::Katalog(QWidget *parent) :
     scrolling->resize(500, 350);
     QWidget *scrollCont = new QWidget();
     QGridLayout *scrollingLayout = new QGridLayout();
-
 
     for(int i = 0; i < number; i++){
         if(Guitars[i].name != " "){
@@ -45,20 +45,41 @@ Katalog::Katalog(QWidget *parent) :
              price->setText(qPrice + "$");
 
              //создаем кноп очку
-             QPushButton *btn = new QPushButton();
+             QPushButton *btn = new QPushButton(this);
              btn->setText("перейти");
 
+             QString buttonNum = QString::number(i);
+             btn->setObjectName("button" + buttonNum);
              scrollingLayout->addWidget(image, i, 1);
              scrollingLayout->addWidget(name, i, 2);
              scrollingLayout->addWidget(price, i, 3);
              scrollingLayout->addWidget(btn, i, 4);
         }
     }
+    for(int i = 0; i < number; i++){
+        QString buttonNum = QString::number(i);
+        QPushButton *button = findChild<QPushButton*>("button" + buttonNum);
+        if(button!=nullptr){
+            button->setProperty("index", i);
+            QObject::connect(button, SIGNAL(clicked()), this,  SLOT(buttonClicked()));
+        }
+    }
 
     scrollCont->setLayout(scrollingLayout);
     scrolling->setWidget(scrollCont);
+    scrolling->setGeometry(110, 140, 751, 381);
     scrolling->show();
+    GuitarPage *gtp = new GuitarPage();
 
+}
+
+void Katalog::buttonClicked(){
+    QPushButton *button = qobject_cast<QPushButton*>(sender());
+    guitar_index = button->property("index").toInt();
+    GuitarPage currentGuitar;
+    User user;
+    this->hide();
+    gtp.show();
 }
 
 Katalog::~Katalog()
