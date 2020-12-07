@@ -19,6 +19,8 @@
 	color:white;
 }
 QPushButton{
+	margin-right:150px;
+	margin-bottom:50px;
 	color : white;
 	background-color: #40e649;
 	border-radius: 25px;
@@ -37,18 +39,11 @@ QPushButton:hover{
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>931</width>
+     <width>1064</width>
      <height>521</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
-     <widget class="QLabel" name="nameLabel">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="1">
      <widget class="QLabel" name="descriptionLabel">
       <property name="text">
@@ -56,14 +51,42 @@ QPushButton:hover{
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="actionButton">
+    <item row="3" column="1">
+     <widget class="QPushButton" name="pushButton">
+      <property name="font">
+       <font>
+        <family>Segoe UI Black</family>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Удалить из ассортимента</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="0" rowspan="3">
+    <item row="0" column="1">
+     <widget class="QLabel" name="nameLabel">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QPushButton" name="returnButton">
+      <property name="font">
+       <font>
+        <family>Segoe UI Black</family>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Вернуться в каталог</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" rowspan="5">
      <widget class="QLabel" name="imgLabel">
       <property name="text">
        <string>TextLabel</string>

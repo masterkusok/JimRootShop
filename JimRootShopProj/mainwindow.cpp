@@ -25,7 +25,6 @@ void MainWindow::on_loginConfirm_clicked()
 {
     User Users[getNumberOfUsers()];
     ParseUsers(Users);
-//    std::cout << Users[1].login << " " << Users[1].password << " " << Users[1].role;
     std::string login = ui->loginLogin->text().toStdString();
     std::string password = ui->loginPassword->text().toStdString();
 

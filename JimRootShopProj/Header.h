@@ -8,7 +8,6 @@
 #include <QApplication>
 #include "User.cpp"
 #include "Instrument.cpp"
-#include "guitarpage.h"
 int getNumberOfUsers();
 int getNumberOfGuitars(Instrument Arr[]);
 //функция для вытаскивания юзеров из файла (я между прочим создал класс для юзеров, ага да ага ага а? А? видишь не нужны вонючие матрицы здесь)

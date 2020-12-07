@@ -5,6 +5,7 @@
 #include <QLayout>
 #include <QScrollArea>
 #include <QLabel>
+#include "mainmenu.h"
 
 Katalog::Katalog(QWidget *parent) :
     QWidget(parent),
@@ -18,7 +19,7 @@ Katalog::Katalog(QWidget *parent) :
     int number = getNumberOfGuitars(Guitars);
 
 
-
+    //это всякая хрень что бы работал скролл
     QScrollArea *scrolling = new QScrollArea(this);
     scrolling->widgetResizable();
     scrolling->resize(500, 350);
@@ -48,6 +49,9 @@ Katalog::Katalog(QWidget *parent) :
              QPushButton *btn = new QPushButton(this);
              btn->setText("перейти");
 
+             scrollingLayout->setHorizontalSpacing(50);
+             scrollingLayout->setVerticalSpacing(70);
+
              QString buttonNum = QString::number(i);
              btn->setObjectName("button" + buttonNum);
              scrollingLayout->addWidget(image, i, 1);
@@ -56,6 +60,7 @@ Katalog::Katalog(QWidget *parent) :
              scrollingLayout->addWidget(btn, i, 4);
         }
     }
+
     //тут я приязываю к каждой кнопке клик
     for(int i = 0; i < number; i++){
         QString buttonNum = QString::number(i);
@@ -81,7 +86,6 @@ void Katalog::buttonClicked(){
     // вот в этой переменной ты можешь найти интовую циферку, которую вместе с юзером нужно в гитарпейдж перекинуть
     guitar_index = button->property("index").toInt();
 
-    GuitarPage currentGuitar;
     User user;
     this->hide();
     gtp.show();
@@ -90,4 +94,11 @@ void Katalog::buttonClicked(){
 Katalog::~Katalog()
 {
     delete ui;
+}
+
+void Katalog::on_returnToMenuButton_clicked()
+{
+    mainMenu *mmn = new mainMenu();
+    mmn->show();
+    this->close();
 }

@@ -7,14 +7,12 @@
 #include <QTextCodec>
 int main(int argc, char *argv[])
 {
-
-    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+    SetConsoleOutputCP(1251);
+    SetConsoleCP(1251);
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("system"));
     QApplication a(argc, argv);
-    //MainWindow w;
-    //w.show();
-    Katalog ktlg;
-    ktlg.show();
-    //GuitarPage gtp;
-    //gtp.show();
+    MainWindow w;
+    w.show();
+
     return a.exec();
 }

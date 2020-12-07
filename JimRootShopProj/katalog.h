@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "Header.h"
+#include "guitarpage.h"
 namespace Ui {
 class Katalog;
 }
@@ -18,6 +19,9 @@ public:
 
 public slots:
     void buttonClicked();
+
+private slots:
+    void on_returnToMenuButton_clicked();
 
 private:
     Ui::Katalog *ui;

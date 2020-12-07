@@ -1,6 +1,7 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 #include "Header.h"
+#include "katalog.h"
 namespace Ui {
 class mainMenu;
 }
@@ -14,6 +15,9 @@ public:
     ~mainMenu();
 public slots:
     void recieveData(User user);
+private slots:
+    void on_KatalogBtn_clicked();
+
 private:
     Ui::mainMenu *ui;
 };

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "Header.h"
+
 namespace Ui {
 class GuitarPage;
 }
@@ -13,6 +14,9 @@ class GuitarPage : public QWidget
 public:
     explicit GuitarPage(QWidget *parent = nullptr);
     ~GuitarPage();
+
+private slots:
+    void on_returnButton_clicked();
 
 private:
     Ui::GuitarPage *ui;

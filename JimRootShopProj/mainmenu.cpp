@@ -21,3 +21,10 @@ void mainMenu::recieveData(User user){
         ui->User_ControlBtn->hide();
     }
 }
+
+void mainMenu::on_KatalogBtn_clicked()
+{
+    Katalog *katalog = new Katalog();
+    this->hide();
+    katalog->show();
+}
