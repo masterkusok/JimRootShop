@@ -31,6 +31,3 @@ void mainMenu::recieveData(User user){
     }
     ui->usernameLabel->setText("Добро пожаловать, " + QString::fromLocal8Bit(user.login.c_str()));
 }
-
-
-

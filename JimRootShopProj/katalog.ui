@@ -49,9 +49,9 @@ QLabel {
   <widget class="QLabel" name="headerLabel">
    <property name="geometry">
     <rect>
-     <x>390</x>
+     <x>320</x>
      <y>20</y>
-     <width>341</width>
+     <width>211</width>
      <height>61</height>
     </rect>
    </property>
@@ -61,6 +61,7 @@ QLabel {
      <pointsize>24</pointsize>
      <weight>75</weight>
      <bold>true</bold>
+     <stylestrategy>PreferDefault</stylestrategy>
     </font>
    </property>
    <property name="text">
@@ -75,6 +76,9 @@ QLabel {
      <width>221</width>
      <height>51</height>
     </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton{

@@ -60,6 +60,9 @@ QPushButton:hover{
         <bold>true</bold>
        </font>
       </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
       <property name="text">
        <string>Удалить из ассортимента</string>
       </property>
@@ -80,6 +83,9 @@ QPushButton:hover{
         <weight>75</weight>
         <bold>true</bold>
        </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="text">
        <string>Вернуться в каталог</string>
