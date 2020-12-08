@@ -7,9 +7,17 @@ GuitarPage::GuitarPage(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GuitarPage)
 {
+
     ui->setupUi(this);
-    //тут я храню номер, но это пока что рабочий костыль, забей
-    int number = 0;
+
+}
+GuitarPage::~GuitarPage()
+{
+    delete ui;
+}
+void GuitarPage::recieveData(User user, int guitar){
+
+    int number = guitar;
 
     Instrument Guitars[30];
     ParseGuitars(Guitars);
@@ -30,10 +38,6 @@ GuitarPage::GuitarPage(QWidget *parent) :
     // а это для описания
     QString descriptionText = QString::fromUtf8(Guitars[number].descritp.c_str());
     ui->descriptionLabel->setText(descriptionText);
-}
-GuitarPage::~GuitarPage()
-{
-    delete ui;
 }
 
 void GuitarPage::on_returnButton_clicked()

@@ -15,11 +15,15 @@ public:
     ~mainMenu();
 public slots:
     void recieveData(User user);
+signals:
+    void sendData(User user);
 private slots:
-    void on_KatalogBtn_clicked();
+    void sendUser();
 
 private:
     Ui::mainMenu *ui;
+    Katalog *ktlg;
+    User current_user;
 };
 
 #endif // MAINMENU_H

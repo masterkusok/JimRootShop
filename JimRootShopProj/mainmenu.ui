@@ -43,7 +43,7 @@ QWidget {
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>20</y>
+     <y>50</y>
      <width>731</width>
      <height>790</height>
     </rect>
@@ -52,6 +52,38 @@ QWidget {
     <property name="bottomMargin">
      <number>300</number>
     </property>
+    <item>
+     <widget class="QLabel" name="usernameLabel">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Segoe UI Black</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel { 
+	color:white;
+}</string>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
     <item>
      <widget class="QPushButton" name="KatalogBtn">
       <property name="styleSheet">

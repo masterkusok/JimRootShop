@@ -4,6 +4,8 @@
 #include <QWidget>
 #include "Header.h"
 #include "guitarpage.h"
+//#include "mainmenu.h"
+
 namespace Ui {
 class Katalog;
 }
@@ -16,16 +18,25 @@ public:
     int btnNumber;
     explicit Katalog(QWidget *parent = nullptr);
     ~Katalog();
+signals:
+    //это что бы отправлять юзера и номер гитары в форму
+    void sendData(User user, int guitar);
+    //это что бы передавать юзера когда возвращаешься обратно в меню
+    void returnUser(User user);
 
 public slots:
+    //это что бы отправлять юзера и номер гитары в форму
     void buttonClicked();
 
-private slots:
+    void recieveData(User user);
+
+    //это что бы передавать юзера когда возвращаешься обратно в меню
     void on_returnToMenuButton_clicked();
 
 private:
     Ui::Katalog *ui;
-    GuitarPage gtp;
+    GuitarPage *gtp;
+  //  mainMenu *mmn;
     int guitar_index;
     User current_user;
 };

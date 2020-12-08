@@ -14,6 +14,8 @@ class GuitarPage : public QWidget
 public:
     explicit GuitarPage(QWidget *parent = nullptr);
     ~GuitarPage();
+public slots:
+    void recieveData(User user, int guitar);
 
 private slots:
     void on_returnButton_clicked();
