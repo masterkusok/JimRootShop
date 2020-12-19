@@ -130,3 +130,16 @@ User getUserInformationByLoginAndPassword(std::string login,std::string password
     }
     return user;
 }
+
+void findGuitars(Instrument arr_1[], Instrument arr_2[], std::string key_word){
+    int number = getNumberOfGuitars(arr_1);
+    int number_of_searched_guitars = 0;
+    std::cout << key_word;
+    for(int i = 0; i < number; i++){
+        //спроси у Лады Андреевны как этот кал работает, а то нихера не понятно
+        if(arr_1[i].name.find(key_word) == 1 or arr_1[i].brand.find(key_word) ==1  or arr_1[i].shape.find(key_word) == 1){
+            arr_2[number_of_searched_guitars] = arr_1[i];
+            number_of_searched_guitars++;
+        }
+    }
+}

@@ -4,7 +4,6 @@
 #include <QWidget>
 #include "Header.h"
 #include "guitarpage.h"
-//#include "mainmenu.h"
 
 namespace Ui {
 class Katalog;

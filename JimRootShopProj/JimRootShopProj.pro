@@ -16,20 +16,23 @@ SOURCES += \
     katalog.cpp \
     main.cpp \
     mainmenu.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    search.cpp
 
 HEADERS += \
     Header.h \
     guitarpage.h \
     katalog.h \
     mainmenu.h \
-    mainwindow.h
+    mainwindow.h \
+    search.h
 
 FORMS += \
     guitarpage.ui \
     katalog.ui \
     mainmenu.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    search.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

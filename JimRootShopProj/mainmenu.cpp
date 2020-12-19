@@ -20,7 +20,7 @@ mainMenu::~mainMenu()
     delete ui;
 }
 void mainMenu::sendUser(){
-    this->close();
+    this->hide();
     emit sendData(current_user);
 }
 void mainMenu::recieveData(User user){

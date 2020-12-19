@@ -18,4 +18,6 @@ int CheckUsers(User Arr[], std::string password, std::string login);
 User getUserInformationByLoginAndPassword(std::string login,std::string password);
 //функция для парса гитар
 void ParseGuitars(Instrument Arr[]);
+//
+void findGuitars(Instrument arr_1[], Instrument arr_2[], std::string key_word);
 #endif // HEADER_H

@@ -5,7 +5,6 @@
 #include <QLayout>
 #include <QScrollArea>
 #include <QLabel>
-
 Katalog::Katalog(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Katalog)
@@ -14,7 +13,6 @@ Katalog::Katalog(QWidget *parent) :
     btnNumber = NULL;
     ui->setupUi(this);
 
-    //mmn = new mainMenu();
     gtp = new GuitarPage();
 
     Instrument Guitars[30];
@@ -109,6 +107,6 @@ void Katalog:: recieveData(User user){
 
 void Katalog::on_returnToMenuButton_clicked()
 {
-
     this->close();
+
 }

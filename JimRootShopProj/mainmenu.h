@@ -2,6 +2,7 @@
 #define MAINMENU_H
 #include "Header.h"
 #include "katalog.h"
+
 namespace Ui {
 class mainMenu;
 }
