@@ -1,6 +1,7 @@
 #include "Header.h"
 #include <iostream>
 #include <QMessageBox>
+#include <string>
 int getNumberOfUsers(){
     std::ifstream ReadFile;
     std::string temp;
@@ -32,73 +33,45 @@ void ParseUsers(User Arr[]){
     ReadFile.close();
 }
 
-int getNumberOfGuitars(Instrument Arr[]){
-    for(int i = 0; i < 30; i++){
-        if(Arr[i].name == " "){
-            return i;
-            break;
-        }
-    }
-}
-void ParseGuitars(Instrument Arr[]){
+std::vector<Instrument> ParseGuitars(){
     std::ifstream ReadFile;
-        int num = 0;
-        ReadFile.open("Files/guitars.csv");
-        if (ReadFile.is_open()) {
-            //переменная для хранения количества строк в описании гитары
-            int num_of_desc_strings;
-            //переменная для хранения строк из файла
-            std::string reader;
+    std::vector <Instrument> vect;
+    ReadFile.open("Files/Guitars.csv");
+    while(ReadFile.good()){
+        Instrument current_guitar;
+        std::string reader;
 
-            while (ReadFile.good()) {
-                    //считываем и вносим бренд
+        std::getline(ReadFile, reader);
+        current_guitar.brand = reader;
 
-                std::getline(ReadFile, reader);
-                if (reader == "") {
-                    break;
-                }
-                else {
-                    Arr[num].brand = reader;
+        std::getline(ReadFile, reader);
+        current_guitar.shape = reader;
 
-                    //считываем и вносим форму
-                    std::getline(ReadFile, reader);
-                    Arr[num].shape = reader;
+        std::getline(ReadFile, reader);
+        current_guitar.name = reader;
 
-                    //считываем и вносим название модели
-                    std::getline(ReadFile, reader);
-                    Arr[num].name = reader;
+        std::getline(ReadFile, reader);
+        current_guitar.price = std::stoi(reader);
 
-                    //считываем и вносим прайс
-                    std::getline(ReadFile, reader);
-                    Arr[num].price = std::stoi(reader);
+        std::getline(ReadFile, reader);
+        current_guitar.material = reader;
 
-                    //считываем и вносим материал
-                    std::getline(ReadFile, reader);
-                    Arr[num].material = reader;
+        std::getline(ReadFile, reader);
+        current_guitar.img_path = reader;
 
-                    //считываем и вносим путь к изображению
-                    std::getline(ReadFile, reader);
-                    Arr[num].img_path = reader;
+        int desc_str_num = 0;
+        std::getline(ReadFile, reader);
+        desc_str_num = std::stoi(reader);
+        std::string description;
 
-                    //получаем количество строк и считываем описание
-                    std::string full_description;
-
-                    std::getline(ReadFile, reader);
-                    num_of_desc_strings = std::stoi(reader);
-                    for (int i = 0; i < num_of_desc_strings; i++) {
-                        std::getline(ReadFile, reader);
-                        full_description = full_description+ reader + "\n";
-                    }
-                    Arr[num].descritp = full_description;
-                    Arr[num].id = num;
-                    num++;
-                }
-
-            }
-
+        for(int i = 0; i < desc_str_num; i++){
+            std::getline(ReadFile, reader);
+            description+=reader + "\n";
         }
-
-        ReadFile.close();
+        current_guitar.descritp = description;
+        vect.push_back(current_guitar);
+    }
+    return vect;
 }
 
 int CheckUsers(User Arr[], std::string password, std::string login){
@@ -131,15 +104,32 @@ User getUserInformationByLoginAndPassword(std::string login,std::string password
     return user;
 }
 
-void findGuitars(Instrument arr_1[], Instrument arr_2[], std::string key_word){
-    int number = getNumberOfGuitars(arr_1);
-    int number_of_searched_guitars = 0;
-    std::cout << key_word;
-    for(int i = 0; i < number; i++){
-        //спроси у Лады Андреевны как этот кал работает, а то нихера не понятно
-        if(arr_1[i].name.find(key_word, 0) or arr_1[i].brand.find(key_word, 0) or arr_1[i].shape.find(key_word, 0)){
-            arr_2[number_of_searched_guitars] = arr_1[i];
-            number_of_searched_guitars++;
+std::vector <Instrument> findGuitars(std::vector <Instrument> vect_1, std::string key_word, std::string brand, std::string shape){
+    std::vector<Instrument> vect_2;
+    for(int i = 0; i < vect_1.size(); i++){
+        if(vect_1[i].name.find(key_word, 0) != std::string::npos || vect_1[i].brand.find(key_word, 0) != std::string::npos||
+           vect_1[i].descritp.find(key_word, 0) != std::string::npos || vect_1[i].material.find(key_word, 0) != std::string::npos){
+            if(!brand.empty() && !shape.empty()){
+                if(vect_1[i].brand == brand && vect_1[i].shape == shape){
+                    vect_2.push_back(vect_1[i]);
+                }
+            }
+
+            else if(!brand.empty()&&shape.empty()){
+                if(vect_1[i].brand == brand){
+                    vect_2.push_back(vect_1[i]);
+                }
+            }
+
+            else if(brand.empty()&&!shape.empty()){
+                if(vect_1[i].shape == shape){
+                    vect_2.push_back(vect_1[i]);
+                }
+            }
+            else{
+                vect_2.push_back(vect_1[i]);
+            }
         }
     }
+    return vect_2;
 }

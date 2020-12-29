@@ -12,9 +12,9 @@ int main(int argc, char *argv[])
     SetConsoleCP(1251);
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("system"));
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    //Search srch;
-    //srch.show();
+    //MainWindow w;
+    //w.show();
+    Search srch;
+    srch.show();
     return a.exec();
 }

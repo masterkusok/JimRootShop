@@ -1,14 +1,12 @@
 #include "search.h"
 #include "ui_search.h"
-
 Search::Search(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Search)
 {
     ui->setupUi(this);
-    Instrument all_guitars[30];
-    ParseGuitars(all_guitars);
-
+    ui->brandBox->addItem("Schecter");
+    ui->brandBox->addItem("Ibanez");
 }
 
 Search::~Search()
@@ -18,16 +16,14 @@ Search::~Search()
 
 void Search::on_applyBtn_clicked()
 {
+    std::vector <Instrument> all_guitars = ParseGuitars();
+    std::vector <Instrument> searched_guitars = findGuitars(all_guitars, ui->keyWordEdit->text().toStdString(),
+              ui->brandBox->currentText().toStdString(), ui->shapeBox->currentText().toStdString());
 
-    Instrument all_guitars[30];
-    Instrument searched_guitars[30];
-    ParseGuitars(all_guitars);
-    findGuitars(all_guitars, searched_guitars, ui->keyWordEdit->text().toStdString());
     QWidget *scrollCont = new QWidget();
     QGridLayout *scrollingLayout = new QGridLayout();
 
-    int number = getNumberOfGuitars(searched_guitars);
-    for(int i = 0; i < number; i++){
+    for(int i = 0; i < searched_guitars.size(); i++){
         if(searched_guitars[i].name != " "){
             //Добавляю изображение, переменная path это путь только в qsring, дальше операции с пиксмапами что бы задать изображение
              QLabel *image = new QLabel();

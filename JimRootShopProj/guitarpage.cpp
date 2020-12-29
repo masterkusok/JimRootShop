@@ -19,8 +19,8 @@ void GuitarPage::recieveData(User user, int guitar){
 
     int number = guitar;
 
-    Instrument Guitars[30];
-    ParseGuitars(Guitars);
+    std::vector <Instrument> Guitars = ParseGuitars();
+
     //это все ради картинки
     QString path = QString::fromUtf8(Guitars[number].img_path.c_str());
     QPixmap startImg("Images\\" + path);

@@ -65,8 +65,14 @@ QPushButton:hover{
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QComboBox" name="brandBox">
+      <property name="whatsThis">
+       <string/>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
       <property name="placeholderText">
-       <string>Бренд</string>
+       <string>Brand</string>
       </property>
      </widget>
     </item>

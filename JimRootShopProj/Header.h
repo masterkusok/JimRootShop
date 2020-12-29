@@ -8,6 +8,9 @@
 #include <QApplication>
 #include "User.cpp"
 #include "Instrument.cpp"
+#include <vector>
+#include <iostream>
+#include <ctype.h>
 int getNumberOfUsers();
 int getNumberOfGuitars(Instrument Arr[]);
 //функция для вытаскивания юзеров из файла (я между прочим создал класс для юзеров, ага да ага ага а? А? видишь не нужны вонючие матрицы здесь)
@@ -17,7 +20,7 @@ int CheckUsers(User Arr[], std::string password, std::string login);
 //Функция для получения всей информации о пользователе по логину и паролю
 User getUserInformationByLoginAndPassword(std::string login,std::string password);
 //функция для парса гитар
-void ParseGuitars(Instrument Arr[]);
-//
-void findGuitars(Instrument arr_1[], Instrument arr_2[], std::string key_word);
+std::vector<Instrument> ParseGuitars();
+
+std::vector <Instrument> findGuitars(std::vector <Instrument> vect_1, std::string key_word, std::string brand, std::string shape);
 #endif // HEADER_H

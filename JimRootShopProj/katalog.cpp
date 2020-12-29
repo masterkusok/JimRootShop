@@ -15,9 +15,8 @@ Katalog::Katalog(QWidget *parent) :
 
     gtp = new GuitarPage();
 
-    Instrument Guitars[30];
-    ParseGuitars(Guitars);
-    int number = getNumberOfGuitars(Guitars);
+    std::vector<Instrument> Guitars = ParseGuitars();
+
     //подключение сигнала для отправления на форму guitarpage
     connect(this, SIGNAL(sendData(User, int)), gtp, SLOT(recieveData(User, int)));
 
@@ -33,7 +32,7 @@ Katalog::Katalog(QWidget *parent) :
     QWidget *scrollCont = new QWidget();
     QGridLayout *scrollingLayout = new QGridLayout();
 
-    for(int i = 0; i < number; i++){
+    for(int i = 0; i < Guitars.size(); i++){
         if(Guitars[i].name != " "){
             //Добавляю изображение, переменная path это путь только в qsring, дальше операции с пиксмапами что бы задать изображение
              QLabel *image = new QLabel();
@@ -69,7 +68,7 @@ Katalog::Katalog(QWidget *parent) :
     }
 
     //тут я приязываю к каждой кнопке клик
-    for(int i = 0; i < number; i++){
+    for(int i = 0; i < Guitars.size(); i++){
         QString buttonNum = QString::number(i);
         QPushButton *button = findChild<QPushButton*>("button" + buttonNum);
         if(button!=nullptr){
