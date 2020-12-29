@@ -10,9 +10,15 @@ mainMenu::mainMenu(QWidget *parent) :
 {
     ui->setupUi(this);
     ktlg = new Katalog();
+    srch = new Search();
+
     connect(this, SIGNAL(sendData(User)), ktlg, SLOT(recieveData(User)));
-    connect(ui->KatalogBtn, SIGNAL(clicked()), ktlg,  SLOT(show()));
     connect(ui->KatalogBtn, SIGNAL(clicked()), this, SLOT(sendUser()));
+
+    connect(ktlg, SIGNAL(returnToMenu()), this, SLOT(backToMenu()));
+
+    ui->stackedWidget->addWidget(ktlg);
+    ui->stackedWidget->addWidget(srch);
 }
 
 mainMenu::~mainMenu()
@@ -20,7 +26,6 @@ mainMenu::~mainMenu()
     delete ui;
 }
 void mainMenu::sendUser(){
-    this->hide();
     emit sendData(current_user);
 }
 void mainMenu::recieveData(User user){
@@ -30,4 +35,14 @@ void mainMenu::recieveData(User user){
         ui->User_ControlBtn->hide();
     }
     ui->usernameLabel->setText("Добро пожаловать, " + QString::fromLocal8Bit(user.login.c_str()));
+}
+
+void mainMenu::backToMenu()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void mainMenu::on_KatalogBtn_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
 }

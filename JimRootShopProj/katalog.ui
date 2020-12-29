@@ -46,42 +46,53 @@ QLabel {
 	font-family : Segoe UI Black;
 }</string>
   </property>
-  <widget class="QLabel" name="headerLabel">
+  <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>20</y>
-     <width>211</width>
-     <height>61</height>
+     <x>0</x>
+     <y>0</y>
+     <width>971</width>
+     <height>561</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <family>Segoe UI Black</family>
-     <pointsize>24</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-     <stylestrategy>PreferDefault</stylestrategy>
-    </font>
-   </property>
-   <property name="text">
-    <string>Каталог</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="returnToMenuButton">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>80</y>
-     <width>221</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{
+   <widget class="QWidget" name="page"/>
+   <widget class="QWidget" name="page_2">
+    <widget class="QLabel" name="headerLabel">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>10</y>
+       <width>211</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI Black</family>
+       <pointsize>24</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+       <stylestrategy>PreferDefault</stylestrategy>
+      </font>
+     </property>
+     <property name="text">
+      <string>Каталог</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="returnToMenuButton">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>70</y>
+       <width>221</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
 	color : white;
 	background-color: #40e649;
 	border-radius: 25px;
@@ -94,10 +105,12 @@ QPushButton:hover{
 	height : 50%;
 	width:100%;
 }</string>
-   </property>
-   <property name="text">
-    <string>Вернуться в меню</string>
-   </property>
+     </property>
+     <property name="text">
+      <string>Вернуться в меню</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>

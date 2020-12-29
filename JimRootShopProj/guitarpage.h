@@ -19,7 +19,8 @@ public slots:
 
 private slots:
     void on_returnButton_clicked();
-
+signals:
+    void returnToKatalog();
 private:
     Ui::GuitarPage *ui;
 };

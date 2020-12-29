@@ -42,7 +42,5 @@ void GuitarPage::recieveData(User user, int guitar){
 
 void GuitarPage::on_returnButton_clicked()
 {
-    Katalog *ktlg = new Katalog();
-    ktlg->show();
-    this->close();
+    emit returnToKatalog();
 }

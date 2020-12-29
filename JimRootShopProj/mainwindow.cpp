@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
     MainMenu = new mainMenu();
     connect(ui->loginConfirm,SIGNAL(clicked()),this,SLOT(onLoginSend()));
     connect(this,SIGNAL(sendData(User)), MainMenu,SLOT(recieveData(User)));
+    ui->stackedWidget->addWidget(MainMenu);
+    MainMenu = new mainMenu();
 }
 User UserThatLogined;
 MainWindow::~MainWindow()
@@ -30,8 +32,7 @@ void MainWindow::on_loginConfirm_clicked()
 
     if(CheckUsers(Users, password, login) > 0){
         UserThatLogined = getUserInformationByLoginAndPassword(login,password);
-        this->hide();
-        MainMenu->show();
+        ui->stackedWidget->setCurrentIndex(2);
     }
     else{
         if(login != "" && password != "" && login != " " && password != " "){

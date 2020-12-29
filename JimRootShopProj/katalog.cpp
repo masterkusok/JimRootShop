@@ -21,13 +21,13 @@ Katalog::Katalog(QWidget *parent) :
     //подключение сигнала для отправления на форму guitarpage
     connect(this, SIGNAL(sendData(User, int)), gtp, SLOT(recieveData(User, int)));
 
-    //подключение сигналов для отправления обратно в меню
-   // connect(this, SIGNAL(returnUser(User)), mmn, SLOT(recieveData(User)));
-   // connect(ui->returnToMenuButton, SIGNAL(clicked()), mmn,  SLOT(show()));
-    //connect(ui->returnToMenuButton, SIGNAL(clicked()), this, SLOT(on_returnToMenuButton_clicked()));
+    ui->stackedWidget->addWidget(gtp);
+    connect(gtp, SIGNAL(returnToKatalog()), this, SLOT(backToKatalog()));
 
     //это всякая хрень что бы работал скролл
-    QScrollArea *scrolling = new QScrollArea(this);
+    ui->stackedWidget->setCurrentIndex(1);
+
+    QScrollArea *scrolling = new QScrollArea(ui->stackedWidget->currentWidget());
     scrolling->widgetResizable();
     scrolling->resize(500, 350);
     QWidget *scrollCont = new QWidget();
@@ -75,7 +75,6 @@ Katalog::Katalog(QWidget *parent) :
         if(button!=nullptr){
             //это нужно что бы в слоте получать номер гитары на которую нажали
             button->setProperty("index", i);
-            connect(button, SIGNAL(clicked()), gtp,  SLOT(show()));
             connect(button, SIGNAL(clicked()), this, SLOT(buttonClicked()));
         }
     }
@@ -92,21 +91,28 @@ void Katalog::buttonClicked(){
     QPushButton *button = qobject_cast<QPushButton*>(sender());
     // вот в этой переменной ты можешь найти интовую циферку, которую вместе с юзером нужно в гитарпейдж перекинуть
     guitar_index = button->property("index").toInt();
-    User user;
-    emit sendData(user, guitar_index);
-    this->close();
+    emit sendData(current_user, guitar_index);
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+void Katalog::recieveData(User user)
+{
+    current_user = user;
+}
+
+void Katalog::backToKatalog()
+{
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 Katalog::~Katalog()
 {
     delete ui;
 }
-void Katalog:: recieveData(User user){
-    std::cout << user.login;
-}
 
 void Katalog::on_returnToMenuButton_clicked()
 {
-    this->close();
+    emit returnToMenu();
 
 }
+

@@ -2,6 +2,7 @@
 #define MAINMENU_H
 #include "Header.h"
 #include "katalog.h"
+#include "search.h"
 
 namespace Ui {
 class mainMenu;
@@ -19,11 +20,14 @@ public slots:
 signals:
     void sendData(User user);
 private slots:
+    void backToMenu();
     void sendUser();
+    void on_KatalogBtn_clicked();
 
 private:
     Ui::mainMenu *ui;
     Katalog *ktlg;
+    Search *srch;
     User current_user;
 };
 
