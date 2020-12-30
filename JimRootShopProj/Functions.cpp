@@ -106,23 +106,40 @@ User getUserInformationByLoginAndPassword(std::string login,std::string password
 
 std::vector <Instrument> findGuitars(std::vector <Instrument> vect_1, std::string key_word, std::string brand, std::string shape){
     std::vector<Instrument> vect_2;
+    //перевод ключевого слова в нижний регистр ( что бы потом поиск осуществлялся без учета регистра)
+    std::transform(key_word.begin(), key_word.end(), key_word.begin(), tolower);
+    std::transform(brand.begin(), brand.end(), brand.begin(), tolower);
+    std::transform(shape.begin(), shape.end(), shape.begin(), tolower);
+
     for(int i = 0; i < vect_1.size(); i++){
-        if(vect_1[i].name.find(key_word, 0) != std::string::npos || vect_1[i].brand.find(key_word, 0) != std::string::npos||
-           vect_1[i].descritp.find(key_word, 0) != std::string::npos || vect_1[i].material.find(key_word, 0) != std::string::npos){
+        //перевод всего остального в нижний регистр
+        std::string lowerName = vect_1[i].name;
+        std::string lowerBrand = vect_1[i].brand;
+        std::string lowerDesc = vect_1[i].descritp;
+        std::string lowerMat = vect_1[i].material;
+        std::string lowerShape = vect_1[i].shape;
+        std::transform(lowerName.begin(), lowerName.end(), lowerName.begin(), tolower);
+        std::transform(lowerBrand.begin(), lowerBrand.end(), lowerBrand.begin(), tolower);
+        std::transform(lowerDesc.begin(), lowerDesc.end(), lowerDesc.begin(), tolower);
+        std::transform(lowerMat.begin(), lowerMat.end(), lowerMat.begin(), tolower);
+        std::transform(lowerShape.begin(), lowerShape.end(), lowerShape.begin(), tolower);
+
+        if(lowerName.find(key_word, 0) != std::string::npos || lowerBrand.find(key_word, 0) != std::string::npos||
+           lowerDesc.find(key_word, 0) != std::string::npos || lowerMat.find(key_word, 0) != std::string::npos){
             if(!brand.empty() && !shape.empty()){
-                if(vect_1[i].brand == brand && vect_1[i].shape == shape){
+
+               if(lowerBrand.find(brand, 0) != std::string::npos && lowerShape.find(shape, 0) != std::string::npos ){
                     vect_2.push_back(vect_1[i]);
                 }
             }
-
             else if(!brand.empty()&&shape.empty()){
-                if(vect_1[i].brand == brand){
+                if(lowerBrand.find(brand, 0) != std::string::npos){
                     vect_2.push_back(vect_1[i]);
                 }
             }
 
             else if(brand.empty()&&!shape.empty()){
-                if(vect_1[i].shape == shape){
+                if(lowerShape.find(shape, 0) != std::string::npos){
                     vect_2.push_back(vect_1[i]);
                 }
             }

@@ -5,8 +5,19 @@ Search::Search(QWidget *parent) :
     ui(new Ui::Search)
 {
     ui->setupUi(this);
+    ui->brandBox->addItem("");
     ui->brandBox->addItem("Schecter");
     ui->brandBox->addItem("Ibanez");
+    ui->brandBox->addItem("Fender");
+
+    ui->shapeBox->addItem("");
+    ui->shapeBox->addItem("Superstrat");
+    ui->shapeBox->addItem("Iceman");
+    ui->shapeBox->addItem("Stratocaster");
+
+    ui->sortBox->addItem("");
+    ui->sortBox->addItem("Ascending");
+    ui->sortBox->addItem("Descending");
 }
 
 Search::~Search()
@@ -20,8 +31,39 @@ void Search::on_applyBtn_clicked()
     std::vector <Instrument> searched_guitars = findGuitars(all_guitars, ui->keyWordEdit->text().toStdString(),
               ui->brandBox->currentText().toStdString(), ui->shapeBox->currentText().toStdString());
 
+
+
     QWidget *scrollCont = new QWidget();
     QGridLayout *scrollingLayout = new QGridLayout();
+
+    //сортировка пузырьком если она нужна
+    Instrument temp_guitar;
+
+    if(ui->sortBox->currentText() == "Ascending"){
+        for (int i = 0; i < searched_guitars.size() - 1; i++) {
+                for (int j = 0; j < searched_guitars.size() - i - 1; j++) {
+                    if (searched_guitars[j].price > searched_guitars[j + 1].price) {
+                        // меняем элементы местами
+                        temp_guitar = searched_guitars[j];
+                        searched_guitars[j] = searched_guitars[j + 1];
+                        searched_guitars[j + 1] = temp_guitar;
+                    }
+                }
+            }
+    }
+
+    if(ui->sortBox->currentText()=="Descending"){
+        for (int i = 0; i < searched_guitars.size() - 1; i++) {
+                for (int j = 0; j < searched_guitars.size() - i - 1; j++) {
+                    if (searched_guitars[j].price < searched_guitars[j + 1].price) {
+                        // меняем элементы местами
+                        temp_guitar = searched_guitars[j];
+                        searched_guitars[j] = searched_guitars[j + 1];
+                        searched_guitars[j + 1] = temp_guitar;
+                    }
+                }
+            }
+    }
 
     for(int i = 0; i < searched_guitars.size(); i++){
         if(searched_guitars[i].name != " "){
