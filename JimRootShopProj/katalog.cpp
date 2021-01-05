@@ -26,7 +26,7 @@ Katalog::Katalog(QWidget *parent) :
     //это всякая хрень что бы работал скролл
     ui->stackedWidget->setCurrentIndex(1);
 
-    QScrollArea *scrolling = new QScrollArea(ui->stackedWidget->currentWidget());
+    QScrollArea *scrolling = ui->ktlgScroll;
     scrolling->widgetResizable();
     scrolling->resize(500, 350);
     QWidget *scrollCont = new QWidget();
