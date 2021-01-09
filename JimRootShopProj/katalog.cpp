@@ -24,7 +24,7 @@ Katalog::Katalog(QWidget *parent) :
     connect(gtp, SIGNAL(returnToKatalog()), this, SLOT(backToKatalog()));
 
     //это всякая хрень что бы работал скролл
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(0);
 
     QScrollArea *scrolling = ui->ktlgScroll;
     scrolling->widgetResizable();
@@ -101,7 +101,7 @@ void Katalog::recieveData(User user)
 
 void Katalog::backToKatalog()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 Katalog::~Katalog()
@@ -111,7 +111,7 @@ Katalog::~Katalog()
 
 void Katalog::on_returnToMenuButton_clicked()
 {
-    emit returnToMenu();
+    emit backToMainMenu();
 
 }
 

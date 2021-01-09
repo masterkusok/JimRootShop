@@ -18,7 +18,7 @@ public:
     explicit Katalog(QWidget *parent = nullptr);
     ~Katalog();
 signals:
-    void returnToMenu();
+    void backToMainMenu();
 
     //это что бы отправлять юзера и номер гитары в форму
     void sendData(User user, int guitar);
@@ -28,11 +28,8 @@ signals:
 public slots:
     //это что бы отправлять юзера и номер гитары в форму
     void buttonClicked();
-
-    void recieveData(User user);
-    //это что бы возвращаться в каталог
     void backToKatalog();
-
+    void recieveData(User user);
     //это что бы передавать юзера когда возвращаешься обратно в меню
     void on_returnToMenuButton_clicked();
 

@@ -19,10 +19,16 @@ public slots:
     void recieveData(User user);
 signals:
     void sendData(User user);
+
+    void goToKatalog();
+
+    void goToSearch();
+
 private slots:
-    void backToMenu();
     void sendUser();
     void on_KatalogBtn_clicked();
+
+    void on_SearchBtn_clicked();
 
 private:
     Ui::mainMenu *ui;

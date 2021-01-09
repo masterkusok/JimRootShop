@@ -8,17 +8,41 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 { 
     ui->setupUi(this);
+
     MainMenu = new mainMenu();
+    ktlg = new Katalog();
+    srch = new Search();
+    gtp = new GuitarPage();
+
     connect(ui->loginConfirm,SIGNAL(clicked()),this,SLOT(onLoginSend()));
     connect(this,SIGNAL(sendData(User)), MainMenu,SLOT(recieveData(User)));
+
+    connect(ktlg, SIGNAL(backToMainMenu()), this, SLOT(showMenu()));
+    connect(MainMenu, SIGNAL(goToKatalog()), this, SLOT(showKatalog()));
+    connect(MainMenu, SIGNAL(goToSearch()), this, SLOT(showSearch()));
+
     ui->stackedWidget->addWidget(MainMenu);
-    MainMenu = new mainMenu();
+    ui->stackedWidget->addWidget(ktlg);
+    ui->stackedWidget->addWidget(srch);
+
+
 }
 User UserThatLogined;
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::showMenu()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::showKatalog()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
 void MainWindow::onLoginSend(){
     emit sendData(UserThatLogined);
 }
@@ -58,7 +82,6 @@ void MainWindow::on_regConfirm_clicked()
             Users[number].id = number;
             if(ui->ifMaster->isChecked()){
                 Users[number].role = 1;
-                this->hide();
 
             }
             else{
@@ -76,4 +99,9 @@ void MainWindow::on_regConfirm_clicked()
             QMessageBox::information(this, "регистрация", "Пользователь с таким логином уже зарегестрирован");
         }
     }
+}
+
+void MainWindow::showSearch()
+{
+    ui->stackedWidget->setCurrentIndex(4);
 }
