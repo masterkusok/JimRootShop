@@ -31,7 +31,7 @@ void mainMenu::recieveData(User user){
         ui->StatsBtn->hide();
         ui->User_ControlBtn->hide();
     }
-    ui->usernameLabel->setText("Добро пожаловать, " + QString::fromLocal8Bit(user.login.c_str()));
+    ui->usernameLabel->setText("Welcome, " + QString::fromLocal8Bit(user.login.c_str()));
 }
 
 

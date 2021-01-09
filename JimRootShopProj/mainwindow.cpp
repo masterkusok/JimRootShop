@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this,SIGNAL(sendData(User)), MainMenu,SLOT(recieveData(User)));
 
     connect(ktlg, SIGNAL(backToMainMenu()), this, SLOT(showMenu()));
+    connect(srch, SIGNAL(returnToMenu()), this, SLOT(showMenu()));
+
     connect(MainMenu, SIGNAL(goToKatalog()), this, SLOT(showKatalog()));
     connect(MainMenu, SIGNAL(goToSearch()), this, SLOT(showSearch()));
 

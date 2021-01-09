@@ -18,7 +18,7 @@ Katalog::Katalog(QWidget *parent) :
     std::vector<Instrument> Guitars = ParseGuitars();
 
     //подключение сигнала для отправления на форму guitarpage
-    connect(this, SIGNAL(sendData(User, int)), gtp, SLOT(recieveData(User, int)));
+    connect(this, SIGNAL(sendData(Instrument)), gtp, SLOT(recieveData(Instrument)));
 
     ui->stackedWidget->addWidget(gtp);
     connect(gtp, SIGNAL(returnToKatalog()), this, SLOT(backToKatalog()));
@@ -53,7 +53,7 @@ Katalog::Katalog(QWidget *parent) :
 
              //создаем кноп очку
              QPushButton *btn = new QPushButton(this);
-             btn->setText("перейти");
+             btn->setText("Go");
 
              scrollingLayout->setHorizontalSpacing(50);
              scrollingLayout->setVerticalSpacing(70);
@@ -90,7 +90,8 @@ void Katalog::buttonClicked(){
     QPushButton *button = qobject_cast<QPushButton*>(sender());
     // вот в этой переменной ты можешь найти интовую циферку, которую вместе с юзером нужно в гитарпейдж перекинуть
     guitar_index = button->property("index").toInt();
-    emit sendData(current_user, guitar_index);
+    std::vector<Instrument> Guitars = ParseGuitars();
+    emit sendData(Guitars[guitar_index]);
     ui->stackedWidget->setCurrentIndex(2);
 }
 

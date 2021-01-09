@@ -128,7 +128,7 @@ QPushButton:hover{
 }</string>
      </property>
      <property name="text">
-      <string>Каталог</string>
+      <string>Catalog</string>
      </property>
     </widget>
    </item>
@@ -167,7 +167,7 @@ QPushButton:hover{
 }</string>
      </property>
      <property name="text">
-      <string>Поиск</string>
+      <string>Search</string>
      </property>
     </widget>
    </item>
@@ -206,7 +206,7 @@ QPushButton:hover{
 }</string>
      </property>
      <property name="text">
-      <string>Статистика</string>
+      <string>Stats</string>
      </property>
     </widget>
    </item>
@@ -245,7 +245,7 @@ QPushButton:hover{
 }</string>
      </property>
      <property name="text">
-      <string>Контроль Пользователей</string>
+      <string>User Control</string>
      </property>
     </widget>
    </item>
@@ -284,7 +284,7 @@ QPushButton:hover{
 }</string>
      </property>
      <property name="text">
-      <string>Выход</string>
+      <string>Exit</string>
      </property>
     </widget>
    </item>

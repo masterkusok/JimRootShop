@@ -15,32 +15,36 @@ GuitarPage::~GuitarPage()
 {
     delete ui;
 }
-void GuitarPage::recieveData(User user, int guitar){
+void GuitarPage::recieveData(Instrument guitar){
 
-    int number = guitar;
 
-    std::vector <Instrument> Guitars = ParseGuitars();
-
+    current_guitar = guitar;
     //это все ради картинки
-    QString path = QString::fromUtf8(Guitars[number].img_path.c_str());
+    QString path = QString::fromUtf8(guitar.img_path.c_str());
     QPixmap startImg("Images\\" + path);
     QPixmap finalImg =  startImg.scaled(500, 500);
     ui->imgLabel->setPixmap(finalImg);
 
     //это для названия прайса и материалов
-    QString nameText = QString::fromUtf8(Guitars[number].name.c_str());
+    QString nameText = QString::fromUtf8(guitar.name.c_str());
     nameText+="\n";
-    nameText+=QString::number(Guitars[number].price) + "$";
+    nameText+=QString::number(guitar.price) + "$";
     nameText+="\n";
-    nameText+=QString::fromUtf8(Guitars[number].material.c_str());
+    nameText+=QString::fromUtf8(guitar.material.c_str());
     ui->nameLabel->setText(nameText);
 
     // а это для описания
-    QString descriptionText = QString::fromUtf8(Guitars[number].descritp.c_str());
+    QString descriptionText = QString::fromUtf8(guitar.descritp.c_str());
     ui->descriptionLabel->setText(descriptionText);
 }
 
 void GuitarPage::on_returnButton_clicked()
 {
     emit returnToKatalog();
+}
+
+
+void GuitarPage::on_removBtn_clicked()
+{
+    removeGuitar(current_guitar);
 }

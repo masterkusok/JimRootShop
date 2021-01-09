@@ -4,7 +4,6 @@
 #include <QWidget>
 #include "Header.h"
 #include "guitarpage.h"
-
 namespace Ui {
 class Katalog;
 }
@@ -21,7 +20,7 @@ signals:
     void backToMainMenu();
 
     //это что бы отправлять юзера и номер гитары в форму
-    void sendData(User user, int guitar);
+    void sendData(Instrument guitar);
     //это что бы передавать юзера когда возвращаешься обратно в меню
     void returnUser(User user);
 

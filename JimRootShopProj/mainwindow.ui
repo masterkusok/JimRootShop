@@ -62,7 +62,7 @@
 }</string>
            </property>
            <property name="placeholderText">
-            <string>Логин</string>
+            <string>Login</string>
            </property>
           </widget>
          </item>
@@ -86,7 +86,7 @@
             <enum>QLineEdit::Password</enum>
            </property>
            <property name="placeholderText">
-            <string>Пароль</string>
+            <string>Password</string>
            </property>
           </widget>
          </item>
@@ -138,7 +138,7 @@ QVBoxLayout{
 }</string>
            </property>
            <property name="text">
-            <string>Войти</string>
+            <string>Sign In</string>
            </property>
            <property name="flat">
             <bool>false</bool>
@@ -189,7 +189,7 @@ QVBoxLayout{
 }</string>
            </property>
            <property name="placeholderText">
-            <string>Логин</string>
+            <string>Login</string>
            </property>
           </widget>
          </item>
@@ -213,7 +213,7 @@ QVBoxLayout{
             <string/>
            </property>
            <property name="placeholderText">
-            <string>Пароль</string>
+            <string>Password</string>
            </property>
           </widget>
          </item>
@@ -242,7 +242,7 @@ QVBoxLayout{
 }</string>
            </property>
            <property name="text">
-            <string>Вы владелец?</string>
+            <string>Admin?</string>
            </property>
           </widget>
          </item>
@@ -288,7 +288,7 @@ QPushButton:hover{
 }</string>
            </property>
            <property name="text">
-            <string>Зарегестрироваться</string>
+            <string>Sign Up</string>
            </property>
           </widget>
          </item>

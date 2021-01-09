@@ -22,6 +22,9 @@ int CheckUsers(User Arr[], std::string password, std::string login);
 User getUserInformationByLoginAndPassword(std::string login,std::string password);
 //функция для парса гитар
 std::vector<Instrument> ParseGuitars();
-
+//функция для поиска гитар
 std::vector <Instrument> findGuitars(std::vector <Instrument> vect_1, std::string key_word, std::string brand, std::string shape);
+//функция которая удаляет гитару
+void removeGuitar(Instrument guitar);
+
 #endif // HEADER_H

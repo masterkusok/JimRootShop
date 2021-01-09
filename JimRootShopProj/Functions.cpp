@@ -150,3 +150,16 @@ std::vector <Instrument> findGuitars(std::vector <Instrument> vect_1, std::strin
     }
     return vect_2;
 }
+
+void removeGuitar(Instrument guitar){
+    std::vector<Instrument> Guitars = ParseGuitars();
+    int index;
+    //находим индекс гитары что бы потом ее убрать
+    for(int i = 0; i < Guitars.size(); i++){
+        if(Guitars[i].name == guitar.name){
+            index = i;
+            break;
+        }
+    }
+
+}

@@ -18,12 +18,17 @@ Search::Search(QWidget *parent) :
     ui->sortBox->addItem("");
     ui->sortBox->addItem("Ascending");
     ui->sortBox->addItem("Descending");
+
+    ui->stackedWidget->addWidget(gtp);
+    connect(this, SIGNAL(sendData(Instrument)), gtp, SLOT(recieveData(Instrument)));
+    connect(gtp, SIGNAL(returnToKatalog()), this, SLOT(returnToSearch()));
 }
 
 Search::~Search()
 {
     delete ui;
 }
+
 
 void Search::on_applyBtn_clicked()
 {
@@ -38,7 +43,6 @@ void Search::on_applyBtn_clicked()
 
     //сортировка пузырьком если она нужна
     Instrument temp_guitar;
-
     if(ui->sortBox->currentText() == "Ascending"){
         for (int i = 0; i < searched_guitars.size() - 1; i++) {
                 for (int j = 0; j < searched_guitars.size() - i - 1; j++) {
@@ -86,7 +90,7 @@ void Search::on_applyBtn_clicked()
 
              //создаем кноп очку
              QPushButton *btn = new QPushButton(this);
-             btn->setText("перейти");
+             btn->setText("Go");
 
              scrollingLayout->setHorizontalSpacing(50);
              scrollingLayout->setVerticalSpacing(70);
@@ -99,6 +103,38 @@ void Search::on_applyBtn_clicked()
              scrollingLayout->addWidget(btn, i, 4);
         }
     }
+    for(int i = 0; i < searched_guitars.size(); i++){
+        QString buttonNum = QString::number(i);
+        QPushButton *button = findChild<QPushButton*>("button" + buttonNum);
+        if(button!=nullptr){
+            //это нужно что бы в слоте получать номер гитары на которую нажали
+            button->setProperty("index", i);
+            connect(button, SIGNAL(clicked()), this, SLOT(buttonClicked()));
+        }
+    }
+
+    current_searched_guitars = searched_guitars;
     scrollCont->setLayout(scrollingLayout);
     ui->searchScrollArea->setWidget(scrollCont);
+}
+
+void Search::buttonClicked()
+{
+    //получаем эту самую циферку, и открываем окно
+    QPushButton *button = qobject_cast<QPushButton*>(sender());
+    // вот в этой переменной ты можешь найти интовую циферку, которую вместе с юзером нужно в гитарпейдж перекинуть
+    int guitar_index = button->property("index").toInt();
+
+    emit sendData(current_searched_guitars[guitar_index]);
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+void Search::returnToSearch()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void Search::on_pushButton_clicked()
+{
+    emit returnToMenu();
 }
