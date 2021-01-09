@@ -162,4 +162,76 @@ void removeGuitar(Instrument guitar){
         }
     }
 
+    std::ifstream ReadFile;
+    std::ofstream WriteFile;
+    WriteFile.open("Files/Temp.csv");
+    ReadFile.open("Files/Guitars.csv");
+    for(int i = 0; ReadFile.good(); i++){
+        std::string reader;
+        if(i !=index){
+
+            std::getline(ReadFile, reader);
+            WriteFile << reader << std::endl;
+
+            std::getline(ReadFile, reader);
+            WriteFile << reader << std::endl;
+
+            std::getline(ReadFile, reader);
+            WriteFile << reader << std::endl;
+
+            std::getline(ReadFile, reader);
+            WriteFile << reader << std::endl;
+
+            std::getline(ReadFile, reader);
+            WriteFile << reader << std::endl;
+
+            std::getline(ReadFile, reader);
+            WriteFile << reader << std::endl;
+
+            int desc_str_num = 0;
+            std::getline(ReadFile, reader);
+            desc_str_num = std::stoi(reader);
+            WriteFile << reader << std::endl;
+            for(int j = 0; j < desc_str_num; j++){
+                std::getline(ReadFile, reader);
+                if(i == Guitars.size()-1){
+                    if(j == desc_str_num-1){
+                        WriteFile << reader;
+                    }
+                    else{
+                        WriteFile << reader<<std::endl;
+                    }
+                }
+                else{
+                    WriteFile << reader<<std::endl;
+                }
+            }
+
+        }
+        else{
+            std::getline(ReadFile, reader);
+
+            std::getline(ReadFile, reader);
+
+            std::getline(ReadFile, reader);
+
+            std::getline(ReadFile, reader);
+
+            std::getline(ReadFile, reader);
+
+            std::getline(ReadFile, reader);
+
+            int desc_str_num = 0;
+            std::getline(ReadFile, reader);
+            desc_str_num = std::stoi(reader);
+            for(int i = 0; i < desc_str_num; i++){
+                std::getline(ReadFile, reader);
+            }
+        }
+    }
+    WriteFile.close();
+    ReadFile.close();
+    std::remove("Files/Guitars.csv");
+    std::rename("Files/Temp.csv", "Files/Guitars.csv");
 }
+
