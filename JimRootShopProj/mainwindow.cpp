@@ -83,11 +83,13 @@ void MainWindow::on_regConfirm_clicked()
             Users[number].password = password;
             Users[number].id = number;
             if(ui->ifMaster->isChecked()){
-                Users[number].role = 1;
+                Users[number].role = 0;
+                QMessageBox::information(this, "Registration", "Your request was succesfully placed, now wait until other admin accept or decline it");
 
             }
             else{
                 Users[number].role = 2;
+                QMessageBox::information(this, "Registration", "Registration completed succesfully");
             }
            std::fstream WriteFile;
            WriteFile.open("Files\\Users.csv", std::ios::app);
@@ -95,7 +97,7 @@ void MainWindow::on_regConfirm_clicked()
            WriteFile.close();
            ui->regLogin->clear();
            ui->regPassword->clear();
-           QMessageBox::information(this, "Registration", "Registration completed succesfully");
+
         }
         else{
             QMessageBox::information(this, "Registration", "User with same login already exists");

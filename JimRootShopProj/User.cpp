@@ -5,7 +5,7 @@ class User{
 public:
         std::string login;
         std::string password;
-        //1 - владелец 2 - покупатель
+        //1 - админ 2 - покупатель 0 - админ, которого нужно подтвердить
         int role;
         // айди че
         int id;

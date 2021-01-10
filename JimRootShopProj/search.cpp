@@ -32,6 +32,40 @@ Search::~Search()
 
 void Search::on_applyBtn_clicked()
 {
+   update();
+}
+
+User UserToSend;
+
+void Search::buttonClicked()
+{
+    //получаем эту самую циферку, и открываем окно
+    QPushButton *button = qobject_cast<QPushButton*>(sender());
+    // вот в этой переменной ты можешь найти интовую циферку, которую вместе с юзером нужно в гитарпейдж перекинуть
+    int guitar_index = button->property("index").toInt();
+
+    emit sendData(current_searched_guitars[guitar_index], UserToSend);
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+void Search::returnToSearch()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+    update();
+}
+
+void Search::on_pushButton_clicked()
+{
+    emit returnToMenu();
+}
+
+void Search::recieveData(User user)
+{
+    UserToSend = user;
+}
+
+void Search::update()
+{
     std::vector <Instrument> all_guitars = ParseGuitars();
     std::vector <Instrument> searched_guitars = findGuitars(all_guitars, ui->keyWordEdit->text().toStdString(),
               ui->brandBox->currentText().toStdString(), ui->shapeBox->currentText().toStdString());
@@ -116,31 +150,4 @@ void Search::on_applyBtn_clicked()
     current_searched_guitars = searched_guitars;
     scrollCont->setLayout(scrollingLayout);
     ui->searchScrollArea->setWidget(scrollCont);
-}
-User UserToSend;
-
-void Search::buttonClicked()
-{
-    //получаем эту самую циферку, и открываем окно
-    QPushButton *button = qobject_cast<QPushButton*>(sender());
-    // вот в этой переменной ты можешь найти интовую циферку, которую вместе с юзером нужно в гитарпейдж перекинуть
-    int guitar_index = button->property("index").toInt();
-
-    emit sendData(current_searched_guitars[guitar_index], UserToSend);
-    ui->stackedWidget->setCurrentIndex(2);
-}
-
-void Search::returnToSearch()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-}
-
-void Search::on_pushButton_clicked()
-{
-    emit returnToMenu();
-}
-
-void Search::recieveData(User user)
-{
-    UserToSend = user;
 }

@@ -23,7 +23,7 @@ private slots:
     void on_applyBtn_clicked();
     void on_pushButton_clicked();
     void recieveData(User user);
-
+    void update();
 private:
     Ui::Search *ui;
     std::vector <Instrument> current_searched_guitars;
