@@ -9,15 +9,18 @@ GuitarPage::GuitarPage(QWidget *parent) :
 {
 
     ui->setupUi(this);
+    connect(rmv, SIGNAL(accepted()), this, SLOT(removeGuitar()));
 
 }
 GuitarPage::~GuitarPage()
 {
     delete ui;
 }
-void GuitarPage::recieveData(Instrument guitar){
-
-
+void GuitarPage::recieveData(Instrument guitar, User user){
+    std::cout << user.role;
+    if(user.role != 1){
+        ui->removBtn->hide();
+    }
     current_guitar = guitar;
     //это все ради картинки
     QString path = QString::fromUtf8(guitar.img_path.c_str());
@@ -39,12 +42,18 @@ void GuitarPage::recieveData(Instrument guitar){
 }
 
 void GuitarPage::on_returnButton_clicked()
+{    
+    emit returnToKatalog();
+}
+
+void GuitarPage::removeGuitar()
 {
+    DeleteGuitar(current_guitar);
     emit returnToKatalog();
 }
 
 
 void GuitarPage::on_removBtn_clicked()
 {
-    removeGuitar(current_guitar);
+    rmv->show();
 }

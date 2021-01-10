@@ -9,16 +9,22 @@ Katalog::Katalog(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Katalog)
 {
-
-    btnNumber = NULL;
     ui->setupUi(this);
+    update();
 
+}
+
+User userToSend;
+
+void Katalog::update()
+{
+    btnNumber = NULL;
     gtp = new GuitarPage();
 
     std::vector<Instrument> Guitars = ParseGuitars();
 
     //подключение сигнала для отправления на форму guitarpage
-    connect(this, SIGNAL(sendData(Instrument)), gtp, SLOT(recieveData(Instrument)));
+    connect(this, SIGNAL(sendData(Instrument, User)), gtp, SLOT(recieveData(Instrument, User)));
 
     ui->stackedWidget->addWidget(gtp);
     connect(gtp, SIGNAL(returnToKatalog()), this, SLOT(backToKatalog()));
@@ -82,27 +88,25 @@ Katalog::Katalog(QWidget *parent) :
     scrolling->setWidget(scrollCont);
     scrolling->setGeometry(110, 140, 751, 381);
     scrolling->show();
-
 }
 
 void Katalog::buttonClicked(){
-    //получаем эту самую циферку, и открываем окно
     QPushButton *button = qobject_cast<QPushButton*>(sender());
-    // вот в этой переменной ты можешь найти интовую циферку, которую вместе с юзером нужно в гитарпейдж перекинуть
     guitar_index = button->property("index").toInt();
     std::vector<Instrument> Guitars = ParseGuitars();
-    emit sendData(Guitars[guitar_index]);
+    emit sendData(Guitars[guitar_index], userToSend);
     ui->stackedWidget->setCurrentIndex(2);
 }
 
 void Katalog::recieveData(User user)
 {
-    current_user = user;
+    userToSend = user;
 }
 
 void Katalog::backToKatalog()
 {
     ui->stackedWidget->setCurrentIndex(0);
+    update();
 }
 
 Katalog::~Katalog()
@@ -115,4 +119,6 @@ void Katalog::on_returnToMenuButton_clicked()
     emit backToMainMenu();
 
 }
+
+
 

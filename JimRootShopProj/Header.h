@@ -25,6 +25,6 @@ std::vector<Instrument> ParseGuitars();
 //функция для поиска гитар
 std::vector <Instrument> findGuitars(std::vector <Instrument> vect_1, std::string key_word, std::string brand, std::string shape);
 //функция которая удаляет гитару
-void removeGuitar(Instrument guitar);
+void DeleteGuitar(Instrument guitar);
 
 #endif // HEADER_H

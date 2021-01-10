@@ -151,7 +151,7 @@ std::vector <Instrument> findGuitars(std::vector <Instrument> vect_1, std::strin
     return vect_2;
 }
 
-void removeGuitar(Instrument guitar){
+void DeleteGuitar(Instrument guitar){
     std::vector<Instrument> Guitars = ParseGuitars();
     int index;
     //находим индекс гитары что бы потом ее убрать

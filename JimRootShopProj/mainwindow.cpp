@@ -62,7 +62,7 @@ void MainWindow::on_loginConfirm_clicked()
     }
     else{
         if(login != "" && password != "" && login != " " && password != " "){
-            QMessageBox::information(this, "вход", "Вы ввели неправильный логин или пароль попробуйте ещё");
+            QMessageBox::information(this, "Authorize", "Password or login are incorrect, try other");
             ui->loginLogin->clear();
             ui->loginPassword->clear();
         }
@@ -95,10 +95,10 @@ void MainWindow::on_regConfirm_clicked()
            WriteFile.close();
            ui->regLogin->clear();
            ui->regPassword->clear();
-           QMessageBox::information(this, "регистрация", "Вы успешно зарегестрированы");
+           QMessageBox::information(this, "Registration", "Registration completed succesfully");
         }
         else{
-            QMessageBox::information(this, "регистрация", "Пользователь с таким логином уже зарегестрирован");
+            QMessageBox::information(this, "Registration", "User with same login already exists");
         }
     }
 }

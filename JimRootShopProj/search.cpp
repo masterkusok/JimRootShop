@@ -20,7 +20,7 @@ Search::Search(QWidget *parent) :
     ui->sortBox->addItem("Descending");
 
     ui->stackedWidget->addWidget(gtp);
-    connect(this, SIGNAL(sendData(Instrument)), gtp, SLOT(recieveData(Instrument)));
+    connect(this, SIGNAL(sendData(Instrument, User)), gtp, SLOT(recieveData(Instrument, User)));
     connect(gtp, SIGNAL(returnToKatalog()), this, SLOT(returnToSearch()));
 }
 
@@ -117,6 +117,7 @@ void Search::on_applyBtn_clicked()
     scrollCont->setLayout(scrollingLayout);
     ui->searchScrollArea->setWidget(scrollCont);
 }
+User UserToSend;
 
 void Search::buttonClicked()
 {
@@ -125,7 +126,7 @@ void Search::buttonClicked()
     // вот в этой переменной ты можешь найти интовую циферку, которую вместе с юзером нужно в гитарпейдж перекинуть
     int guitar_index = button->property("index").toInt();
 
-    emit sendData(current_searched_guitars[guitar_index]);
+    emit sendData(current_searched_guitars[guitar_index], UserToSend);
     ui->stackedWidget->setCurrentIndex(2);
 }
 
@@ -137,4 +138,9 @@ void Search::returnToSearch()
 void Search::on_pushButton_clicked()
 {
     emit returnToMenu();
+}
+
+void Search::recieveData(User user)
+{
+    UserToSend = user;
 }

@@ -15,14 +15,14 @@ public:
     explicit Search(QWidget *parent = nullptr);
     ~Search();
 signals:
-    void sendData(Instrument guitar);
+    void sendData(Instrument guitar, User user);
     void returnToMenu();
 private slots:
     void buttonClicked();
     void returnToSearch();
     void on_applyBtn_clicked();
-
     void on_pushButton_clicked();
+    void recieveData(User user);
 
 private:
     Ui::Search *ui;

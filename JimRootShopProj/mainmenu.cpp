@@ -13,6 +13,8 @@ mainMenu::mainMenu(QWidget *parent) :
     srch = new Search();
 
     connect(this, SIGNAL(sendData(User)), ktlg, SLOT(recieveData(User)));
+    connect(this, SIGNAL(sendData(User)), srch, SLOT(recieveData(User)));
+
     connect(ui->KatalogBtn, SIGNAL(clicked()), this, SLOT(sendUser()));
 
 
@@ -42,5 +44,6 @@ void mainMenu::on_KatalogBtn_clicked()
 
 void mainMenu::on_SearchBtn_clicked()
 {
+    emit sendData(current_user);
     emit goToSearch();
 }

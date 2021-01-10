@@ -20,7 +20,7 @@ signals:
     void backToMainMenu();
 
     //это что бы отправлять юзера и номер гитары в форму
-    void sendData(Instrument guitar);
+    void sendData(Instrument guitar, User user);
     //это что бы передавать юзера когда возвращаешься обратно в меню
     void returnUser(User user);
 
@@ -31,13 +31,14 @@ public slots:
     void recieveData(User user);
     //это что бы передавать юзера когда возвращаешься обратно в меню
     void on_returnToMenuButton_clicked();
+private slots:
+    void update();
 
 private:
     Ui::Katalog *ui;
     GuitarPage *gtp;
-  //  mainMenu *mmn;
     int guitar_index;
-    User current_user;
+
 };
 
 #endif // KATALOG_H

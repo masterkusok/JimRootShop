@@ -17,6 +17,7 @@ SOURCES += \
     main.cpp \
     mainmenu.cpp \
     mainwindow.cpp \
+    removingdialog.cpp \
     search.cpp
 
 HEADERS += \
@@ -25,6 +26,7 @@ HEADERS += \
     katalog.h \
     mainmenu.h \
     mainwindow.h \
+    removingdialog.h \
     search.h
 
 FORMS += \
@@ -32,6 +34,7 @@ FORMS += \
     katalog.ui \
     mainmenu.ui \
     mainwindow.ui \
+    removingdialog.ui \
     search.ui
 
 # Default rules for deployment.
