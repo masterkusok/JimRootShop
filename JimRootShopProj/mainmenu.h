@@ -24,11 +24,15 @@ signals:
 
     void goToSearch();
 
+    void goBack();
+
 private slots:
     void sendUser();
     void on_KatalogBtn_clicked();
 
     void on_SearchBtn_clicked();
+
+    void on_ExitBtn_clicked();
 
 private:
     Ui::mainMenu *ui;

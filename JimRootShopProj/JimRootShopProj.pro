@@ -30,6 +30,7 @@ HEADERS += \
     search.h
 
 FORMS += \
+    addguitar.ui \
     guitarpage.ui \
     katalog.ui \
     mainmenu.ui \

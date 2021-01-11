@@ -75,6 +75,7 @@ height:100%;
          <property name="font">
           <font>
            <family>Segoe UI Black</family>
+           <pointsize>10</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -141,6 +142,7 @@ height:100%;
          <property name="font">
           <font>
            <family>Segoe UI Black</family>
+           <pointsize>10</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -182,8 +184,8 @@ height:100%;
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>812</width>
-            <height>264</height>
+            <width>820</width>
+            <height>268</height>
            </rect>
           </property>
          </widget>

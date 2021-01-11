@@ -26,6 +26,7 @@ private slots:
     void onLoginSend();
     void on_regConfirm_clicked();
     void showSearch();
+    void showMainWindow();
 
 private:
     Ui::MainWindow *ui;

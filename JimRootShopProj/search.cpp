@@ -105,6 +105,10 @@ void Search::update()
 
     for(int i = 0; i < searched_guitars.size(); i++){
         if(searched_guitars[i].name != " "){
+            //Добавляем нужный шрифт
+            const QFont font = QFont("Segoe UI Black",10,10,false);
+            const QFont fontitalic = QFont("Segoe UI Black", 10, 10,true);
+
             //Добавляю изображение, переменная path это путь только в qsring, дальше операции с пиксмапами что бы задать изображение
              QLabel *image = new QLabel();
              QString path = QString::fromUtf8(searched_guitars[i].img_path.c_str());
@@ -116,16 +120,18 @@ void Search::update()
              QLabel *name = new QLabel();
              QString qName = QString::fromUtf8(searched_guitars[i].name.c_str());
              name->setText(qName);
+             name->setFont(font);
 
              //задаем стоимость
              QLabel *price = new QLabel();
              QString qPrice = QString::number(searched_guitars[i].price);
              price->setText(qPrice + "$");
+             price->setFont(fontitalic);
 
              //создаем кноп очку
              QPushButton *btn = new QPushButton(this);
              btn->setText("Go");
-
+             btn->setFont(font);
              scrollingLayout->setHorizontalSpacing(50);
              scrollingLayout->setVerticalSpacing(70);
 

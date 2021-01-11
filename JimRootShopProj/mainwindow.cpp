@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(MainMenu, SIGNAL(goToKatalog()), this, SLOT(showKatalog()));
     connect(MainMenu, SIGNAL(goToSearch()), this, SLOT(showSearch()));
+    connect(MainMenu,SIGNAL(goBack()), this, SLOT(showMainWindow()));
 
     ui->stackedWidget->addWidget(MainMenu);
     ui->stackedWidget->addWidget(ktlg);
@@ -56,7 +57,7 @@ void MainWindow::on_loginConfirm_clicked()
     std::string login = ui->loginLogin->text().toStdString();
     std::string password = ui->loginPassword->text().toStdString();
 
-    if(CheckUsers(Users, password, login) > 0){
+    if(CheckUsers(Users, password, login) >= 0){
         UserThatLogined = getUserInformationByLoginAndPassword(login,password);
         ui->stackedWidget->setCurrentIndex(2);
     }
@@ -108,4 +109,9 @@ void MainWindow::on_regConfirm_clicked()
 void MainWindow::showSearch()
 {
     ui->stackedWidget->setCurrentIndex(4);
+}
+void MainWindow::showMainWindow(){
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->regLogin->clear();
+    ui->regPassword->clear();
 }

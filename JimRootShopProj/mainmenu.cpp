@@ -29,7 +29,7 @@ void mainMenu::sendUser(){
 }
 void mainMenu::recieveData(User user){
     current_user = user;
-    if(user.role == 2){
+    if(user.role == 2 || user.role == 0){
         ui->StatsBtn->hide();
         ui->User_ControlBtn->hide();
     }
@@ -46,4 +46,9 @@ void mainMenu::on_SearchBtn_clicked()
 {
     emit sendData(current_user);
     emit goToSearch();
+}
+
+void mainMenu::on_ExitBtn_clicked()
+{
+    emit goBack();
 }

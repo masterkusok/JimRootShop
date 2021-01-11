@@ -39,6 +39,11 @@ QPushButton:hover{
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="1">
       <widget class="QLabel" name="descriptionLabel">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -49,6 +54,7 @@ QPushButton:hover{
        <property name="font">
         <font>
          <family>Segoe UI Black</family>
+         <pointsize>16</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -61,18 +67,12 @@ QPushButton:hover{
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="nameLabel">
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-     </item>
      <item row="4" column="1">
       <widget class="QPushButton" name="returnButton">
        <property name="font">
         <font>
          <family>Segoe UI Black</family>
+         <pointsize>16</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -87,6 +87,31 @@ QPushButton:hover{
      </item>
      <item row="0" column="0" rowspan="5">
       <widget class="QLabel" name="imgLabel">
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="nameLabel">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>MV Boli</family>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
