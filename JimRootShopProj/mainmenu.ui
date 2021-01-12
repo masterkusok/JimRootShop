@@ -172,7 +172,7 @@ QPushButton:hover{
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="StatsBtn">
+    <widget class="QPushButton" name="AddGuitarBtn">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -206,7 +206,7 @@ QPushButton:hover{
 }</string>
      </property>
      <property name="text">
-      <string>Stats</string>
+      <string>Add Guitar</string>
      </property>
     </widget>
    </item>

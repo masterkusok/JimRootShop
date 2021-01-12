@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     ktlg = new Katalog();
     srch = new Search();
     gtp = new GuitarPage();
+    cntrl = new UserControl();
 
     connect(ui->loginConfirm,SIGNAL(clicked()),this,SLOT(onLoginSend()));
     connect(this,SIGNAL(sendData(User)), MainMenu,SLOT(recieveData(User)));
@@ -23,10 +24,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(MainMenu, SIGNAL(goToKatalog()), this, SLOT(showKatalog()));
     connect(MainMenu, SIGNAL(goToSearch()), this, SLOT(showSearch()));
     connect(MainMenu,SIGNAL(goBack()), this, SLOT(showMainWindow()));
+    connect(MainMenu, SIGNAL(goToUserControl()), this, SLOT(showUserControl()));
 
     ui->stackedWidget->addWidget(MainMenu);
     ui->stackedWidget->addWidget(ktlg);
     ui->stackedWidget->addWidget(srch);
+    ui->stackedWidget->addWidget(cntrl);
 
 
 }
@@ -114,4 +117,9 @@ void MainWindow::showMainWindow(){
     ui->stackedWidget->setCurrentIndex(0);
     ui->regLogin->clear();
     ui->regPassword->clear();
+}
+
+void MainWindow::showUserControl()
+{
+    ui->stackedWidget->setCurrentIndex(5);
 }

@@ -30,11 +30,11 @@ void mainMenu::sendUser(){
 void mainMenu::recieveData(User user){
     current_user = user;
     if(user.role == 2 || user.role == 0){
-        ui->StatsBtn->hide();
+        ui->AddGuitarBtn->hide();
         ui->User_ControlBtn->hide();
     }
     else{
-        ui->StatsBtn->show();
+        ui->AddGuitarBtn->show();
         ui->User_ControlBtn->show();
     }
     ui->usernameLabel->setText("Welcome, " + QString::fromLocal8Bit(user.login.c_str()));
@@ -55,4 +55,9 @@ void mainMenu::on_SearchBtn_clicked()
 void mainMenu::on_ExitBtn_clicked()
 {
     emit goBack();
+}
+
+void mainMenu::on_User_ControlBtn_clicked()
+{
+    emit goToUserControl();
 }

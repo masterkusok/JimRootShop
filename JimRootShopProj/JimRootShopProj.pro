@@ -18,7 +18,8 @@ SOURCES += \
     mainmenu.cpp \
     mainwindow.cpp \
     removingdialog.cpp \
-    search.cpp
+    search.cpp \
+    usercontrol.cpp
 
 HEADERS += \
     Header.h \
@@ -27,7 +28,8 @@ HEADERS += \
     mainmenu.h \
     mainwindow.h \
     removingdialog.h \
-    search.h
+    search.h \
+    usercontrol.h
 
 FORMS += \
     addguitar.ui \
@@ -36,7 +38,8 @@ FORMS += \
     mainmenu.ui \
     mainwindow.ui \
     removingdialog.ui \
-    search.ui
+    search.ui \
+    usercontrol.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

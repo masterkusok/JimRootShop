@@ -26,6 +26,8 @@ signals:
 
     void goBack();
 
+    void goToUserControl();
+
 private slots:
     void sendUser();
     void on_KatalogBtn_clicked();
@@ -33,6 +35,8 @@ private slots:
     void on_SearchBtn_clicked();
 
     void on_ExitBtn_clicked();
+
+    void on_User_ControlBtn_clicked();
 
 private:
     Ui::mainMenu *ui;
