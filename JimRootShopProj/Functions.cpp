@@ -234,4 +234,42 @@ void DeleteGuitar(Instrument guitar){
     std::remove("Files/Guitars.csv");
     std::rename("Files/Temp.csv", "Files/Guitars.csv");
 }
+std::vector <std::string> getAllGuitarBrands(){
+    std::vector <Instrument> Guitars = ParseGuitars();
+    std::vector <std::string> allBrands;
+    std::string temp_brand;
+    for(int i = 0; i < Guitars.size(); i++){
+        bool found = false;
+        temp_brand = Guitars[i].brand;
+        for(int j = 0; j < allBrands.size(); j++){
+            if(allBrands[j] == temp_brand){
+                found = true;
+                break;
+            }
+        }
+        if(!found){
+            allBrands.push_back(temp_brand);
+        }
+    }
 
+    return allBrands;
+}
+
+std::vector <std::string> getAllGuitarShapes(){
+    std::vector <Instrument> Guitars = ParseGuitars();
+    std::vector <std::string> allShapes;
+    std::string temp_shape;
+    for(int i = 0; i < Guitars.size(); i++){
+        bool found = false;
+        temp_shape = Guitars[i].shape;
+        for(int j = 0; j < allShapes.size(); j++){
+            if(allShapes[j] == temp_shape){
+                found = true;
+            }
+        }
+        if(!found){
+            allShapes.push_back(temp_shape);
+        }
+    }
+    return allShapes;
+}

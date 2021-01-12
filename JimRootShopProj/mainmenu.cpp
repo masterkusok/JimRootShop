@@ -33,6 +33,10 @@ void mainMenu::recieveData(User user){
         ui->StatsBtn->hide();
         ui->User_ControlBtn->hide();
     }
+    else{
+        ui->StatsBtn->show();
+        ui->User_ControlBtn->show();
+    }
     ui->usernameLabel->setText("Welcome, " + QString::fromLocal8Bit(user.login.c_str()));
 }
 

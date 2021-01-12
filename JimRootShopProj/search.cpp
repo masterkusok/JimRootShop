@@ -5,23 +5,32 @@ Search::Search(QWidget *parent) :
     ui(new Ui::Search)
 {
     ui->setupUi(this);
-    ui->brandBox->addItem("");
-    ui->brandBox->addItem("Schecter");
-    ui->brandBox->addItem("Ibanez");
-    ui->brandBox->addItem("Fender");
 
-    ui->shapeBox->addItem("");
-    ui->shapeBox->addItem("Superstrat");
-    ui->shapeBox->addItem("Iceman");
-    ui->shapeBox->addItem("Stratocaster");
-
+    //тут добавление 2-х сортировок, 1 - по возрастанию а 2 - по убыванию
     ui->sortBox->addItem("");
     ui->sortBox->addItem("Ascending");
     ui->sortBox->addItem("Descending");
+    //добавление брендов в фильтры
+    ui->brandBox->clear();
+    ui->brandBox->addItem("");
+    std::vector<std::string> brands = getAllGuitarBrands();
 
+
+    for(int i = 0; i < brands.size(); i++){
+        ui->brandBox->addItem(QString::fromUtf8(brands[i].c_str()));
+    }
+    //добавление форм в фильтры
+    ui->shapeBox->clear();
+    ui->shapeBox->addItem("");
+    std::vector<std::string> shapes = getAllGuitarShapes();
+    for(int i = 0; i < shapes.size(); i++){
+        ui->shapeBox->addItem(QString::fromUtf8(shapes[i].c_str()));
+    }
     ui->stackedWidget->addWidget(gtp);
     connect(this, SIGNAL(sendData(Instrument, User)), gtp, SLOT(recieveData(Instrument, User)));
     connect(gtp, SIGNAL(returnToKatalog()), this, SLOT(returnToSearch()));
+
+    update();
 }
 
 Search::~Search()
@@ -39,9 +48,7 @@ User UserToSend;
 
 void Search::buttonClicked()
 {
-    //получаем эту самую циферку, и открываем окно
     QPushButton *button = qobject_cast<QPushButton*>(sender());
-    // вот в этой переменной ты можешь найти интовую циферку, которую вместе с юзером нужно в гитарпейдж перекинуть
     int guitar_index = button->property("index").toInt();
 
     emit sendData(current_searched_guitars[guitar_index], UserToSend);
@@ -66,6 +73,7 @@ void Search::recieveData(User user)
 
 void Search::update()
 {
+
     std::vector <Instrument> all_guitars = ParseGuitars();
     std::vector <Instrument> searched_guitars = findGuitars(all_guitars, ui->keyWordEdit->text().toStdString(),
               ui->brandBox->currentText().toStdString(), ui->shapeBox->currentText().toStdString());
@@ -76,8 +84,8 @@ void Search::update()
     QGridLayout *scrollingLayout = new QGridLayout();
 
     //сортировка пузырьком если она нужна
-    Instrument temp_guitar;
     if(ui->sortBox->currentText() == "Ascending"){
+        Instrument temp_guitar;
         for (int i = 0; i < searched_guitars.size() - 1; i++) {
                 for (int j = 0; j < searched_guitars.size() - i - 1; j++) {
                     if (searched_guitars[j].price > searched_guitars[j + 1].price) {
@@ -91,6 +99,7 @@ void Search::update()
     }
 
     if(ui->sortBox->currentText()=="Descending"){
+        Instrument temp_guitar;
         for (int i = 0; i < searched_guitars.size() - 1; i++) {
                 for (int j = 0; j < searched_guitars.size() - i - 1; j++) {
                     if (searched_guitars[j].price < searched_guitars[j + 1].price) {
@@ -143,6 +152,7 @@ void Search::update()
              scrollingLayout->addWidget(btn, i, 4);
         }
     }
+    //привязываю клик к каждой кнопке
     for(int i = 0; i < searched_guitars.size(); i++){
         QString buttonNum = QString::number(i);
         QPushButton *button = findChild<QPushButton*>("button" + buttonNum);
