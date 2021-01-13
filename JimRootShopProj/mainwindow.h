@@ -6,6 +6,7 @@
 #include "search.h"
 #include "guitarpage.h"
 #include "usercontrol.h"
+#include "addguitars.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -29,6 +30,7 @@ private slots:
     void showSearch();
     void showMainWindow();
     void showUserControl();
+    void showAddGuitar();
 
 private:
     Ui::MainWindow *ui;
@@ -37,5 +39,6 @@ private:
     Search *srch;
     GuitarPage *gtp;
     UserControl *cntrl;
+    addguitars *addgi;
 };
 #endif // MAINWINDOW_H

@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <property name="styleSheet">
    <string notr="true">QWidget {
 	background-color:#3d3d3d;
@@ -37,33 +40,10 @@ QPushButton:hover{
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="1">
-      <widget class="QLabel" name="descriptionLabel">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
+     <item row="0" column="0" rowspan="5">
+      <widget class="QLabel" name="imgLabel">
        <property name="text">
         <string>TextLabel</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="removBtn">
-       <property name="font">
-        <font>
-         <family>Segoe UI Black</family>
-         <pointsize>16</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="text">
-        <string>Remove </string>
        </property>
       </widget>
      </item>
@@ -85,10 +65,21 @@ QPushButton:hover{
        </property>
       </widget>
      </item>
-     <item row="0" column="0" rowspan="5">
-      <widget class="QLabel" name="imgLabel">
+     <item row="3" column="1">
+      <widget class="QPushButton" name="removBtn">
+       <property name="font">
+        <font>
+         <family>Segoe UI Black</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>Remove </string>
        </property>
       </widget>
      </item>
@@ -114,6 +105,27 @@ QPushButton:hover{
        </property>
        <property name="text">
         <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="descriptionLabel">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

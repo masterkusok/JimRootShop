@@ -28,6 +28,7 @@ signals:
 
     void goToUserControl();
 
+    void goToAddGuitar();
 private slots:
     void sendUser();
     void on_KatalogBtn_clicked();
@@ -38,6 +39,7 @@ private slots:
 
     void on_User_ControlBtn_clicked();
 
+    void on_AddGuitarBtn_clicked();
 private:
     Ui::mainMenu *ui;
     Katalog *ktlg;

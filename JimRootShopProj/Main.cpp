@@ -2,6 +2,7 @@
 #include "mainmenu.h"
 #include "katalog.h"
 #include "Header.h"
+#include "addguitars.h"
 #include "guitarpage.h"
 #include "search.h"
 #include <iostream>
@@ -16,5 +17,7 @@ int main(int argc, char *argv[])
     w.show();
     //Search srch;
     //srch.show();
+//    addguitars gitar;
+//    gitar.show();
     return a.exec();
 }

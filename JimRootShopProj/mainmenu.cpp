@@ -61,3 +61,8 @@ void mainMenu::on_User_ControlBtn_clicked()
 {
     emit goToUserControl();
 }
+
+void mainMenu::on_AddGuitarBtn_clicked()
+{
+    emit goToAddGuitar();
+}

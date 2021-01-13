@@ -72,6 +72,12 @@ QLabel {
        </item>
        <item>
         <widget class="QPushButton" name="returnToMenuButton">
+         <property name="font">
+          <font>
+           <family>Segoe UI Black</family>
+           <pointsize>15</pointsize>
+          </font>
+         </property>
          <property name="cursor">
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
@@ -105,8 +111,8 @@ QPushButton:hover{
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>923</width>
-            <height>398</height>
+            <width>931</width>
+            <height>417</height>
            </rect>
           </property>
          </widget>

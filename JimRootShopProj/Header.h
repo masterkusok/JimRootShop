@@ -30,4 +30,6 @@ void DeleteGuitar(Instrument guitar);
 std::vector <std::string> getAllGuitarBrands();
 //Тоже что и прошлое, но с формами
 std::vector <std::string> getAllGuitarShapes();
+//Функция для добавления гитары
+void addGuitar(std::string Brand, std::string Shape, std::string Name, std::string Price, std::string Material, std::string Img_path, std::string Description);
 #endif // HEADER_H

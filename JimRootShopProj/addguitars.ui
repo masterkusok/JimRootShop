@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>addGuitar</class>
- <widget class="QWidget" name="addGuitar">
+ <class>addguitars</class>
+ <widget class="QWidget" name="addguitars">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>768</width>
-    <height>616</height>
+    <width>999</width>
+    <height>680</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,6 +26,9 @@
        <weight>75</weight>
        <bold>true</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;</string>
      </property>
      <property name="text">
       <string>Add new guitar</string>
@@ -63,13 +66,22 @@
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">color:white;</string>
+           </property>
            <property name="text">
             <string>Brand</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="brandLine"/>
+          <widget class="QLineEdit" name="brandLine">
+           <property name="styleSheet">
+            <string notr="true">border-radius: 2px;
+border:1px solid #363636;
+color:white;</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -93,13 +105,22 @@
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">color:white;</string>
+           </property>
            <property name="text">
             <string>Name</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="nameLine"/>
+          <widget class="QLineEdit" name="nameLine">
+           <property name="styleSheet">
+            <string notr="true">border-radius: 2px;
+border:1px solid #363636;
+color:white;</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -123,13 +144,22 @@
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">color:white;</string>
+           </property>
            <property name="text">
             <string>Shape</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="shapeLine"/>
+          <widget class="QLineEdit" name="shapeLine">
+           <property name="styleSheet">
+            <string notr="true">border-radius: 2px;
+border:1px solid #363636;
+color:white;</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -153,6 +183,9 @@
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">color:white;</string>
+           </property>
            <property name="text">
             <string>Price</string>
            </property>
@@ -160,6 +193,14 @@
          </item>
          <item>
           <widget class="QSpinBox" name="spinBox">
+           <property name="styleSheet">
+            <string notr="true">color:white;
+border-radius: 2px;
+border:1px solid #363636;</string>
+           </property>
+           <property name="buttonSymbols">
+            <enum>QAbstractSpinBox::NoButtons</enum>
+           </property>
            <property name="maximum">
             <number>999999999</number>
            </property>
@@ -187,13 +228,22 @@
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">color:white;</string>
+           </property>
            <property name="text">
             <string>Material</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="materialLine"/>
+          <widget class="QLineEdit" name="materialLine">
+           <property name="styleSheet">
+            <string notr="true">border-radius: 2px;
+border:1px solid #363636;
+color:white;</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -238,13 +288,27 @@
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">color:white;</string>
+           </property>
            <property name="text">
             <string>Description</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPlainTextEdit" name="plainTextEdit"/>
+          <widget class="QPlainTextEdit" name="plainTextEdit">
+           <property name="font">
+            <font>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border-radius: 2px;
+border:1px solid #363636;
+color:white;</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -274,6 +338,9 @@
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">color:white;</string>
+           </property>
            <property name="text">
             <string>Image</string>
            </property>
@@ -283,8 +350,8 @@
           <widget class="QLabel" name="imageLabel">
            <property name="minimumSize">
             <size>
-             <width>0</width>
-             <height>200</height>
+             <width>300</width>
+             <height>300</height>
             </size>
            </property>
            <property name="font">
@@ -298,27 +365,24 @@
            <property name="text">
             <string/>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
           </widget>
          </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="addGuitarButton">
-     <property name="font">
-      <font>
-       <family>Segoe UI Black</family>
-       <pointsize>15</pointsize>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton{
+         <item>
+          <widget class="QPushButton" name="changeImage">
+           <property name="font">
+            <font>
+             <family>Segoe UI Black</family>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
 	color : white;
 	background-color: #40e649;
 	border-radius: 25px;
@@ -331,10 +395,100 @@ QPushButton:hover{
 	height : 50%;
 	width:100%;
 }</string>
-     </property>
-     <property name="text">
-      <string>Add</string>
-     </property>
+           </property>
+           <property name="text">
+            <string>Change image</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_2" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QPushButton" name="addGuitarButton">
+        <property name="font">
+         <font>
+          <family>Segoe UI Black</family>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	color : white;
+	background-color: #40e649;
+	border-radius: 25px;
+	height : 50%;
+	width:100%;
+}
+QPushButton:hover{
+	color : white;
+	background-color: #35bd3c;
+	height : 50%;
+	width:100%;
+}</string>
+        </property>
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>300</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="goBack">
+        <property name="font">
+         <font>
+          <family>Segoe UI Black</family>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	color : white;
+	background-color: #40e649;
+	border-radius: 25px;
+	height : 50%;
+	width:100%;
+}
+QPushButton:hover{
+	color : white;
+	background-color: #35bd3c;
+	height : 50%;
+	width:100%;
+}</string>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
