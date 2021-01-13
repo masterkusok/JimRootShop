@@ -18,6 +18,10 @@ public:
 
 private:
     Ui::UserControl *ui;
+private slots:
+    void update();
+    void CancelClicked();
+    void AcceptClicked();
 };
 
 #endif // USERCONTROL_H

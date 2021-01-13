@@ -21,6 +21,9 @@ void GuitarPage::recieveData(Instrument guitar, User user){
     if(user.role != 1){
         ui->removBtn->hide();
     }
+    else{
+        ui->removBtn->show();
+    }
     current_guitar = guitar;
     //это все ради картинки
     QString path = QString::fromUtf8(guitar.img_path.c_str());

@@ -33,8 +33,7 @@ void Katalog::update()
     ui->stackedWidget->setCurrentIndex(0);
 
     QScrollArea *scrolling = ui->ktlgScroll;
-    scrolling->widgetResizable();
-    scrolling->resize(500, 350);
+
     QWidget *scrollCont = new QWidget();
     QGridLayout *scrollingLayout = new QGridLayout();
 
@@ -86,7 +85,6 @@ void Katalog::update()
 
     scrollCont->setLayout(scrollingLayout);
     scrolling->setWidget(scrollCont);
-    scrolling->setGeometry(110, 140, 751, 381);
     scrolling->show();
 }
 

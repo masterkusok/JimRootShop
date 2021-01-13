@@ -29,7 +29,7 @@ void mainMenu::sendUser(){
 }
 void mainMenu::recieveData(User user){
     current_user = user;
-    if(user.role == 2 || user.role == 0){
+    if(user.role == 2 || user.role == 3){
         ui->AddGuitarBtn->hide();
         ui->User_ControlBtn->hide();
     }

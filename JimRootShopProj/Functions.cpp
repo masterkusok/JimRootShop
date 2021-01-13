@@ -5,11 +5,13 @@
 int getNumberOfUsers(){
     std::ifstream ReadFile;
     std::string temp;
-    int n;
+    int n = 1;
     ReadFile.open("Files\\Users.csv");
     for(int i = 0;ReadFile.good();i++){
-        getline(ReadFile,temp,'\n');
-        n = i + 1;
+        getline(ReadFile,temp);
+        if(!temp.empty()){
+            n+=1;
+        }
     }
     ReadFile.close();
     return n;
@@ -22,13 +24,15 @@ void ParseUsers(User Arr[]){
     std::string temp_role, temp_login, temp_password;
     while(ReadFile.good()){
         std::getline(ReadFile, temp_login, ' ');
-        std::getline(ReadFile, temp_password, ' ');
-        std::getline(ReadFile, temp_role, '\n');
-        Arr[i].role = std::stoi(temp_role);
-        Arr[i].id = i;
-        Arr[i].login = temp_login;
-        Arr[i].password = temp_password;
-        i++;
+        if(!temp_login.empty()){
+            std::getline(ReadFile, temp_password, ' ');
+            std::getline(ReadFile, temp_role, '\n');
+            Arr[i].role = std::stoi(temp_role);
+            Arr[i].id = i;
+            Arr[i].login = temp_login;
+            Arr[i].password = temp_password;
+            i++;
+        }
     }
     ReadFile.close();
 }
@@ -272,4 +276,32 @@ std::vector <std::string> getAllGuitarShapes(){
         }
     }
     return allShapes;
+}
+void DeleteUser(int user_index){
+    int i = 0;
+    std::vector <User> users;
+    std::ifstream ReadFile;
+    int number = getNumberOfUsers();
+    ReadFile.open("Files\\Users.csv");
+    while(i < number){
+        User temp;
+        if(i!=user_index){
+            ReadFile >> temp.login;
+            ReadFile >> temp.password;
+            ReadFile >> temp.role;
+            users.push_back(temp);
+        }
+        i++;
+    }
+    ReadFile.close();
+    std::ofstream WriteFile;
+    i =0;
+    WriteFile.open("Files\\Temp.csv");
+    while(i < users.size()){
+        WriteFile <<users[i].login << " " << users[i].password << " " << users[i].role << std::endl;
+        i++;
+    }
+    WriteFile.close();
+    std::remove("Files\\Users.csv");
+    std::rename("Files\\Temp.csv", "Files\\Users.csv");
 }

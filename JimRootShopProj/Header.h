@@ -30,4 +30,8 @@ void DeleteGuitar(Instrument guitar);
 std::vector <std::string> getAllGuitarBrands();
 //Тоже что и прошлое, но с формами
 std::vector <std::string> getAllGuitarShapes();
+//функция для удаления юзера из базы данных
+void DeleteUser(int user_index);
+//Функция которая изменяет роль пользователя(нужно для бана либо для принятия в одмены
+void changeUserRole(User user, int role);
 #endif // HEADER_H

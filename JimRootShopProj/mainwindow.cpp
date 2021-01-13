@@ -87,7 +87,7 @@ void MainWindow::on_regConfirm_clicked()
             Users[number].password = password;
             Users[number].id = number;
             if(ui->ifMaster->isChecked()){
-                Users[number].role = 0;
+                Users[number].role = 3;
                 QMessageBox::information(this, "Registration", "Your request was succesfully placed, now wait until other admin accept or decline it");
 
             }
