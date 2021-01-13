@@ -14,23 +14,28 @@ MainWindow::MainWindow(QWidget *parent)
     srch = new Search();
     gtp = new GuitarPage();
     cntrl = new UserControl();
+    addgi = new addguitars();
 
     connect(ui->loginConfirm,SIGNAL(clicked()),this,SLOT(onLoginSend()));
     connect(this,SIGNAL(sendData(User)), MainMenu,SLOT(recieveData(User)));
 
     connect(ktlg, SIGNAL(backToMainMenu()), this, SLOT(showMenu()));
+
     connect(srch, SIGNAL(returnToMenu()), this, SLOT(showMenu()));
 
     connect(MainMenu, SIGNAL(goToKatalog()), this, SLOT(showKatalog()));
     connect(MainMenu, SIGNAL(goToSearch()), this, SLOT(showSearch()));
     connect(MainMenu,SIGNAL(goBack()), this, SLOT(showMainWindow()));
     connect(MainMenu, SIGNAL(goToUserControl()), this, SLOT(showUserControl()));
+    connect(MainMenu, SIGNAL(goToAddGuitar()), this, SLOT(showAddGuitar()));
+
+    connect(addgi,SIGNAL(goBack()),this,SLOT(showMenu()));
 
     ui->stackedWidget->addWidget(MainMenu);
     ui->stackedWidget->addWidget(ktlg);
     ui->stackedWidget->addWidget(srch);
     ui->stackedWidget->addWidget(cntrl);
-
+    ui->stackedWidget->addWidget(addgi);
 
 }
 User UserThatLogined;
@@ -122,4 +127,7 @@ void MainWindow::showMainWindow(){
 void MainWindow::showUserControl()
 {
     ui->stackedWidget->setCurrentIndex(5);
+}
+void MainWindow::showAddGuitar(){
+    ui->stackedWidget->setCurrentIndex(6);
 }

@@ -115,7 +115,6 @@ Katalog::~Katalog()
 void Katalog::on_returnToMenuButton_clicked()
 {
     emit backToMainMenu();
-
 }
 
 

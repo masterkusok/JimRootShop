@@ -34,4 +34,6 @@ std::vector <std::string> getAllGuitarShapes();
 void DeleteUser(int user_index);
 //Функция которая изменяет роль пользователя(нужно для бана либо для принятия в одмены
 void changeUserRole(User user, int role);
+//Функция для добавления гитары
+void addGuitar(std::string Brand, std::string Shape, std::string Name, std::string Price, std::string Material, std::string Img_path, std::string Description);
 #endif // HEADER_H

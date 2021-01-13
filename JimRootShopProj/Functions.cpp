@@ -16,7 +16,46 @@ int getNumberOfUsers(){
     ReadFile.close();
     return n;
 }
+int getNumberOfGuitars(){
+    std::ifstream ReadFile;
+    int n = 1;
+    ReadFile.open("Files/Guitars.csv");
+    while(ReadFile.good()){
+        Instrument current_guitar;
+        std::string reader;
 
+        std::getline(ReadFile, reader);
+        current_guitar.brand = reader;
+
+        std::getline(ReadFile, reader);
+        current_guitar.shape = reader;
+
+        std::getline(ReadFile, reader);
+        current_guitar.name = reader;
+
+        std::getline(ReadFile, reader);
+        current_guitar.price = std::stoi(reader);
+
+        std::getline(ReadFile, reader);
+        current_guitar.material = reader;
+
+        std::getline(ReadFile, reader);
+        current_guitar.img_path = reader;
+
+        int desc_str_num = 0;
+        std::getline(ReadFile, reader);
+        desc_str_num = std::stoi(reader);
+        std::string description;
+
+        for(int i = 0; i < desc_str_num; i++){
+            std::getline(ReadFile, reader);
+            description+=reader + "\n";
+        }
+        current_guitar.descritp = description;
+        n += 1;
+    }
+    return n;
+}
 void ParseUsers(User Arr[]){
     std::ifstream ReadFile;
     ReadFile.open("Files\\Users.csv");
@@ -304,4 +343,17 @@ void DeleteUser(int user_index){
     WriteFile.close();
     std::remove("Files\\Users.csv");
     std::rename("Files\\Temp.csv", "Files\\Users.csv");
+}
+
+void addGuitar(std::string Brand, std::string Shape, std::string Name, std::string Price, std::string Material, std::string Img_path, std::string Description){
+    std::ofstream File;
+    File.open("Files/Guitars.csv",std::ios::app);
+    File << std::endl << Brand
+         << std::endl << Shape
+         << std::endl << Name
+         << std::endl << Price
+         << std::endl << Material
+         << std::endl << Img_path
+         << std::endl << "1"
+         << std::endl << Description;
 }
