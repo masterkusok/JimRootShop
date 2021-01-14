@@ -27,13 +27,18 @@ void addguitars::on_addGuitarButton_clicked()
     std::string name = ui->nameLine->text().toStdString();
     std::string price = ui->spinBox->text().toStdString();
     std::string material = ui->materialLine->text().toStdString();
-    std::string description = ui->plainTextEdit->toPlainText().toStdString();
+    QStringList descr = ui->plainTextEdit->toPlainText().split('\n');
+    std::string description = "";
+    for(int i = 0;i < descr.length();i++){
+        description = description + descr[i].toStdString();
+    }
     if(brand != "" && brand != " " &&
        shape != "" && shape != " " &&
        name != "" && name != " " &&
        price != "" && price != " " &&
        material != "" && material != " " &&
-       description != "" && description != " "){
+       description != "" && description != " " &&
+       img_path != "" && img_path != " "){
        addGuitar(brand,shape,name,price,material,imgPat.toStdString(),description);
        QMessageBox::information(this, "Adding guitar", "Guitar added successfully");
     }

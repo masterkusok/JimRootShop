@@ -123,9 +123,11 @@ void MainWindow::showSearch()
     ui->stackedWidget->setCurrentIndex(4);
 }
 void MainWindow::showMainWindow(){
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->loginLogin->clear();
+    ui->loginPassword->clear();
     ui->regLogin->clear();
     ui->regPassword->clear();
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::showUserControl()

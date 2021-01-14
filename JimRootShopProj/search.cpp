@@ -141,6 +141,7 @@ void Search::update()
              QPushButton *btn = new QPushButton(this);
              btn->setText("Go");
              btn->setFont(font);
+             btn->setCursor(Qt::PointingHandCursor);
              scrollingLayout->setHorizontalSpacing(50);
              scrollingLayout->setVerticalSpacing(70);
 
