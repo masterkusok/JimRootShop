@@ -15,9 +15,9 @@
 int getNumberOfUsers();
 int getNumberOfGuitars(Instrument Arr[]);
 //функция для вытаскивания юзеров из файла (я между прочим создал класс для юзеров, ага да ага ага а? А? видишь не нужны вонючие матрицы здесь)
-void ParseUsers(User Arr[]);
+std::vector <User> ParseUsers();
 //функция для поиска совпадений по логину и паролю, потом она будет изменяться так что не трогай ее
-int CheckUsers(User Arr[], std::string password, std::string login);
+int CheckUsers(std::vector<User> Arr, std::string password, std::string login);
 //Функция для получения всей информации о пользователе по логину и паролю
 User getUserInformationByLoginAndPassword(std::string login,std::string password);
 //функция для парса гитар
@@ -33,7 +33,7 @@ std::vector <std::string> getAllGuitarShapes();
 //функция для удаления юзера из базы данных
 void DeleteUser(int user_index);
 //Функция которая изменяет роль пользователя(нужно для бана либо для принятия в одмены
-void changeUserRole(User user, int role);
+void changeUserRole(int user_index, int role);
 //Функция для добавления гитары
 void addGuitar(std::string Brand, std::string Shape, std::string Name, std::string Price, std::string Material, std::string Img_path, std::string Description);
 #endif // HEADER_H

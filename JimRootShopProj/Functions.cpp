@@ -7,73 +7,36 @@ int getNumberOfUsers(){
     std::string temp;
     int n = 1;
     ReadFile.open("Files\\Users.csv");
-    for(int i = 0;ReadFile.good();i++){
-        getline(ReadFile,temp);
-        if(!temp.empty()){
-            n+=1;
-        }
+    while(!ReadFile.eof()){
+        std::getline(ReadFile, temp);
+        n++;
     }
     ReadFile.close();
-    return n;
+    return n/3;
 }
-int getNumberOfGuitars(){
-    std::ifstream ReadFile;
-    int n = 1;
-    ReadFile.open("Files/Guitars.csv");
-    while(ReadFile.good()){
-        Instrument current_guitar;
-        std::string reader;
 
-        std::getline(ReadFile, reader);
-        current_guitar.brand = reader;
-
-        std::getline(ReadFile, reader);
-        current_guitar.shape = reader;
-
-        std::getline(ReadFile, reader);
-        current_guitar.name = reader;
-
-        std::getline(ReadFile, reader);
-        current_guitar.price = std::stoi(reader);
-
-        std::getline(ReadFile, reader);
-        current_guitar.material = reader;
-
-        std::getline(ReadFile, reader);
-        current_guitar.img_path = reader;
-
-        int desc_str_num = 0;
-        std::getline(ReadFile, reader);
-        desc_str_num = std::stoi(reader);
-        std::string description;
-
-        for(int i = 0; i < desc_str_num; i++){
-            std::getline(ReadFile, reader);
-            description+=reader + "\n";
-        }
-        current_guitar.descritp = description;
-        n += 1;
-    }
-    return n;
-}
-void ParseUsers(User Arr[]){
+std::vector <User> ParseUsers(){
     std::ifstream ReadFile;
     ReadFile.open("Files\\Users.csv");
+    std::string temp;
     int i = 0;
-    std::string temp_role, temp_login, temp_password;
+    std::vector <User> users;
     while(ReadFile.good()){
-        std::getline(ReadFile, temp_login, ' ');
-        if(!temp_login.empty()){
-            std::getline(ReadFile, temp_password, ' ');
-            std::getline(ReadFile, temp_role, '\n');
-            Arr[i].role = std::stoi(temp_role);
-            Arr[i].id = i;
-            Arr[i].login = temp_login;
-            Arr[i].password = temp_password;
-            i++;
-        }
+        User current_user;
+
+        std::getline(ReadFile, temp);
+        current_user.login = temp;
+
+        std::getline(ReadFile, temp);
+        current_user.password = temp;
+
+        std::getline(ReadFile, temp);
+        current_user.role = stoi(temp);
+
+        users.push_back(current_user);
     }
     ReadFile.close();
+    return users;
 }
 
 std::vector<Instrument> ParseGuitars(){
@@ -102,22 +65,14 @@ std::vector<Instrument> ParseGuitars(){
         std::getline(ReadFile, reader);
         current_guitar.img_path = reader;
 
-        int desc_str_num = 0;
         std::getline(ReadFile, reader);
-        desc_str_num = std::stoi(reader);
-        std::string description;
-
-        for(int i = 0; i < desc_str_num; i++){
-            std::getline(ReadFile, reader);
-            description+=reader + "\n";
-        }
-        current_guitar.descritp = description;
+        current_guitar.descritp = reader;
         vect.push_back(current_guitar);
     }
     return vect;
 }
 
-int CheckUsers(User Arr[], std::string password, std::string login){
+int CheckUsers(std::vector<User> Arr, std::string password, std::string login){
     bool checking = true;
     for(int i = 0; i < getNumberOfUsers(); i++){
         if(Arr[i].login == login && Arr[i].password == password){
@@ -134,8 +89,8 @@ int CheckUsers(User Arr[], std::string password, std::string login){
 
 
 User getUserInformationByLoginAndPassword(std::string login,std::string password){
-    User user,Users[getNumberOfUsers()];
-    ParseUsers(Users);
+    User user;
+    std::vector <User> Users = ParseUsers();
     for(int i = 0;i < getNumberOfUsers();i++){
         if(Users[i].login == login && Users[i].password == password){
             user.id = Users[i].id;
@@ -231,24 +186,10 @@ void DeleteGuitar(Instrument guitar){
             std::getline(ReadFile, reader);
             WriteFile << reader << std::endl;
 
-            int desc_str_num = 0;
+
             std::getline(ReadFile, reader);
-            desc_str_num = std::stoi(reader);
             WriteFile << reader << std::endl;
-            for(int j = 0; j < desc_str_num; j++){
-                std::getline(ReadFile, reader);
-                if(i == Guitars.size()-1){
-                    if(j == desc_str_num-1){
-                        WriteFile << reader;
-                    }
-                    else{
-                        WriteFile << reader<<std::endl;
-                    }
-                }
-                else{
-                    WriteFile << reader<<std::endl;
-                }
-            }
+
 
         }
         else{
@@ -264,12 +205,7 @@ void DeleteGuitar(Instrument guitar){
 
             std::getline(ReadFile, reader);
 
-            int desc_str_num = 0;
             std::getline(ReadFile, reader);
-            desc_str_num = std::stoi(reader);
-            for(int i = 0; i < desc_str_num; i++){
-                std::getline(ReadFile, reader);
-            }
         }
     }
     WriteFile.close();
@@ -316,33 +252,97 @@ std::vector <std::string> getAllGuitarShapes(){
     }
     return allShapes;
 }
-void DeleteUser(int user_index){
+void changeUserRole(int user_index, int role){
     int i = 0;
-    std::vector <User> users;
+    std::vector<User> users;
+    User temp_user;
     std::ifstream ReadFile;
-    int number = getNumberOfUsers();
     ReadFile.open("Files\\Users.csv");
-    while(i < number){
-        User temp;
-        if(i!=user_index){
-            ReadFile >> temp.login;
-            ReadFile >> temp.password;
-            ReadFile >> temp.role;
-            users.push_back(temp);
+    std::string temp;
+    while(ReadFile.good()){
+        if(i != user_index){
+            std::getline(ReadFile, temp);
+            temp_user.login = temp;
+            std::getline(ReadFile, temp);
+            temp_user.password = temp;
+            std::getline(ReadFile, temp);
+            temp_user.role = stoi(temp);
+
+            users.push_back(temp_user);
+        }
+        else{
+            std::getline(ReadFile, temp);
+            temp_user.login = temp;
+            std::getline(ReadFile, temp);
+            temp_user.password = temp;
+            std::getline(ReadFile, temp);
+            temp_user.role = role;
+
+            users.push_back(temp_user);
         }
         i++;
     }
     ReadFile.close();
+
     std::ofstream WriteFile;
-    i =0;
     WriteFile.open("Files\\Temp.csv");
+    i = 0;
     while(i < users.size()){
-        WriteFile <<users[i].login << " " << users[i].password << " " << users[i].role << std::endl;
+        WriteFile << users[i].login << std::endl;
+        WriteFile << users[i].password << std::endl;
+        WriteFile << users[i].role;
+        if(i != users.size()-1){
+            WriteFile << std::endl;
+        }
         i++;
     }
     WriteFile.close();
     std::remove("Files\\Users.csv");
     std::rename("Files\\Temp.csv", "Files\\Users.csv");
+}
+void DeleteUser(int user_index){
+    int i = 0;
+    std::vector<User> users;
+    User temp_user;
+    std::ifstream ReadFile;
+    ReadFile.open("Files\\Users.csv");
+    std::string temp;
+    while(ReadFile.good()){
+        if(i != user_index){
+            std::getline(ReadFile, temp);
+            temp_user.login = temp;
+            std::getline(ReadFile, temp);
+            temp_user.password = temp;
+            std::getline(ReadFile, temp);
+            temp_user.role = stoi(temp);
+
+            users.push_back(temp_user);
+        }
+        else{
+            std::getline(ReadFile, temp);
+            std::getline(ReadFile, temp);
+            std::getline(ReadFile, temp);
+        }
+        i++;
+    }
+    ReadFile.close();
+
+    std::ofstream WriteFile;
+    WriteFile.open("Files\\Temp.csv");
+    i = 0;
+    while(i < users.size()){
+        WriteFile << users[i].login << std::endl;
+        WriteFile << users[i].password << std::endl;
+        WriteFile << users[i].role;
+        if(i != users.size()-1){
+            WriteFile << std::endl;
+        }
+        i++;
+    }
+    WriteFile.close();
+    std::remove("Files\\Users.csv");
+    std::rename("Files\\Temp.csv", "Files\\Users.csv");
+
 }
 
 void addGuitar(std::string Brand, std::string Shape, std::string Name, std::string Price, std::string Material, std::string Img_path, std::string Description){
@@ -354,6 +354,5 @@ void addGuitar(std::string Brand, std::string Shape, std::string Name, std::stri
          << std::endl << Price
          << std::endl << Material
          << std::endl << Img_path
-         << std::endl << "1"
          << std::endl << Description;
 }

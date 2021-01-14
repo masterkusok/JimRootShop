@@ -79,6 +79,14 @@ height:100%;
      </item>
      <item>
       <widget class="QScrollArea" name="userControlArea">
+       <property name="font">
+        <font>
+         <family>Segoe UI Black</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="widgetResizable">
         <bool>true</bool>
        </property>
@@ -90,6 +98,14 @@ height:100%;
           <width>899</width>
           <height>399</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI Black</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
        </widget>
       </widget>

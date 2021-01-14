@@ -60,14 +60,18 @@ void MainWindow::onLoginSend(){
 //нажатие на кнопку войти
 void MainWindow::on_loginConfirm_clicked()
 {
-    User Users[getNumberOfUsers()];
-    ParseUsers(Users);
+    std::vector <User> Users = ParseUsers();
     std::string login = ui->loginLogin->text().toStdString();
     std::string password = ui->loginPassword->text().toStdString();
 
     if(CheckUsers(Users, password, login) >= 0){
         UserThatLogined = getUserInformationByLoginAndPassword(login,password);
-        ui->stackedWidget->setCurrentIndex(2);
+        if(UserThatLogined.role!=4){
+            ui->stackedWidget->setCurrentIndex(2);
+        }
+        else{
+            QMessageBox::information(this, "Authorize", "This user is banned");
+        }
     }
     else{
         if(login != "" && password != "" && login != " " && password != " "){
@@ -81,29 +85,29 @@ void MainWindow::on_loginConfirm_clicked()
 //нажатие на кнопку регистрации и непосредственно алгоритм регистрации
 void MainWindow::on_regConfirm_clicked()
 {
-    User Users[getNumberOfUsers() + 1];
-    ParseUsers(Users);
+    std::vector <User> Users = ParseUsers();
     std::string login = ui->regLogin->text().toStdString();
     std::string password = ui->regPassword->text().toStdString();
     if(login != "" && password != "" && login != " " && password != " "){
         if(CheckUsers(Users, password, login) == 0){
-            int number = getNumberOfUsers();
-            Users[number].login = login;
-            Users[number].password = password;
-            Users[number].id = number;
+            User temp_user;
+            temp_user.login = login;
+            temp_user.password = password;
+            temp_user.id = getNumberOfUsers();
             if(ui->ifMaster->isChecked()){
-                Users[number].role = 3;
+                temp_user.role = 3;
                 QMessageBox::information(this, "Registration", "Your request was succesfully placed, now wait until other admin accept or decline it");
 
             }
             else{
-                Users[number].role = 2;
+                temp_user.role = 2;
                 QMessageBox::information(this, "Registration", "Registration completed succesfully");
             }
            std::fstream WriteFile;
            WriteFile.open("Files\\Users.csv", std::ios::app);
-           WriteFile << login << " " << password << " " << Users[number].role << std::endl;
+           WriteFile << std::endl << login << std::endl << password << std::endl << temp_user.role;
            WriteFile.close();
+           Users.push_back(temp_user);
            ui->regLogin->clear();
            ui->regPassword->clear();
 

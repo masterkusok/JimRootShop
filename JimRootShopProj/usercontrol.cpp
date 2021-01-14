@@ -18,28 +18,42 @@ void UserControl::update()
 {
     QScrollArea *scrolling = ui->userControlArea;
     QWidget *scrollCont = new QWidget();
+    scrollCont->setStyleSheet("QWidget{font-family: Segoe ui black; font-size:8pt}");
     QGridLayout *scrollingLayout = new QGridLayout();
 
     int number = getNumberOfUsers();
-    User users[number];
-    ParseUsers(users);
+    std::vector <User> Users = ParseUsers();
+
+    QLabel *LoginLbl = new QLabel();
+    LoginLbl->setText("Login");
+    LoginLbl->setStyleSheet("QLabel{font-size:11pt}");
+    scrollingLayout->addWidget(LoginLbl, 0, 1);
+
+    QLabel *RoleLbl = new QLabel();
+    RoleLbl->setText("Post");
+    RoleLbl->setStyleSheet("QLabel{font-size:11pt}");
+    scrollingLayout->addWidget(RoleLbl, 0, 2);
+
+    QLabel *ActionLbl = new QLabel();
+    ActionLbl->setText("Allowed Actions");
+    ActionLbl->setStyleSheet("QLabel{font-size:11pt}");
+    scrollingLayout->addWidget(ActionLbl, 0, 4);
 
     for(int i = 0; i < number; i++){
-        if(!users[i].login.empty() && !users[i].password.empty() && users[i].role!=0){
-
-            std::cout << users[i].login << users[i].password << users[i].role << std::endl;
+        if(!Users[i].login.empty() && !Users[i].password.empty() && Users[i].role!=0){
+            std::cout << Users[i].login << Users[i].password << Users[i].role << std::endl;
             //отображение логина
             QLabel *login = new QLabel();
-            QString qLogin = QString::fromUtf8(users[i].login.c_str());
+            QString qLogin = QString::fromUtf8(Users[i].login.c_str());
             login->setText(qLogin);
 
             //отображение роли
             QLabel *role = new QLabel();
             QString qrole;
-            if(users[i].role == 3 or users[i].role == 1){
+            if(Users[i].role == 3 or Users[i].role == 1){
                 qrole = "Admin";
             }
-            else if(users[i].role == 2){
+            else if(Users[i].role == 2){
                 qrole = "User";
             }
             else{
@@ -47,11 +61,11 @@ void UserControl::update()
             }
             role->setText(qrole);
 
-            scrollingLayout->addWidget(login, i, 1);
-            scrollingLayout->addWidget(role, i, 2);
+            scrollingLayout->addWidget(login, i+1, 1);
+            scrollingLayout->addWidget(role, i+1, 2);
 
 
-            if(users[i].role == 3){
+            if(Users[i].role == 3){
                 QString buttonNum = QString::number(i);
                 //кнопка принятия заявки
                 QPushButton *AcceptBtn = new QPushButton(this);
@@ -63,8 +77,33 @@ void UserControl::update()
                 CancelBtn->setObjectName("CancelBtn" + buttonNum);
                 CancelBtn->setStyleSheet("QPushButton{background-color:#e8463a;} QPushButton:hover{background-color:#cc3e33;}");
 
-                scrollingLayout->addWidget(AcceptBtn, i, 3);
-                scrollingLayout->addWidget(CancelBtn, i, 4);
+                scrollingLayout->addWidget(AcceptBtn, i+1, 3);
+                scrollingLayout->addWidget(CancelBtn, i+1, 4);
+            }
+            if(Users[i].role == 2){
+                QString buttonNum = QString::number(i);
+
+                //кнопка для повышения должности юзера
+                QPushButton *promoteBtn = new QPushButton(this);
+                promoteBtn->setText("Promote User");
+                promoteBtn->setObjectName("PromoteBtn" + buttonNum);
+
+                //кнопка бана
+                QPushButton *banBtn = new QPushButton(this);
+                banBtn->setText("Ban User");
+                banBtn->setObjectName("BanBtn" + buttonNum);
+                banBtn->setStyleSheet("QPushButton{background-color:#e8463a;} QPushButton:hover{background-color:#cc3e33;}");
+
+                scrollingLayout->addWidget(promoteBtn, i+1, 3);
+                scrollingLayout->addWidget(banBtn, i+1, 4);
+            }
+            if(Users[i].role == 4){
+                //кнопка для разбана
+                QString buttonNum = QString::number(i);
+                QPushButton *unbanBtn = new QPushButton(this);
+                unbanBtn->setText("Unban User");
+                unbanBtn->setObjectName("UnbanBtn" + buttonNum);
+                scrollingLayout->addWidget(unbanBtn, i+1, 3);
             }
         }
     }
@@ -74,18 +113,35 @@ void UserControl::update()
 
     for(int i = 0; i < number; i++){
         QString buttonNum = QString::number(i);
+
         QPushButton *AcceptBtn = findChild<QPushButton*>("AcceptBtn" + buttonNum);
         if(AcceptBtn!=nullptr){
-            //это нужно что бы в слоте получать номер гитары на которую нажали
             AcceptBtn->setProperty("index", i);
             connect(AcceptBtn, SIGNAL(clicked()), this, SLOT(AcceptClicked()));
         }
 
         QPushButton *CancelBtn = findChild<QPushButton*>("CancelBtn" + buttonNum);
         if(CancelBtn!=nullptr){
-            //это нужно что бы в слоте получать номер гитары на которую нажали
             CancelBtn->setProperty("index", i);
             connect(CancelBtn, SIGNAL(clicked()), this, SLOT(CancelClicked()));
+        }
+
+        QPushButton *banBtn = findChild<QPushButton*>("BanBtn" + buttonNum);
+        if(banBtn!=nullptr){
+            banBtn->setProperty("index", i);
+            connect(banBtn, SIGNAL(clicked()), this, SLOT(banClicked()));
+        }
+
+        QPushButton *unbanBtn = findChild<QPushButton*>("UnbanBtn" + buttonNum);
+        if(unbanBtn!=nullptr){
+            unbanBtn->setProperty("index", i);
+            connect(unbanBtn, SIGNAL(clicked()), this, SLOT(unbanClicked()));
+        }
+
+        QPushButton *promBtn = findChild<QPushButton*>("PromoteBtn" + buttonNum);
+        if(promBtn!=nullptr){
+            promBtn->setProperty("index", i);
+            connect(promBtn, SIGNAL(clicked()), this, SLOT(promClicked()));
         }
     }
 
@@ -105,4 +161,30 @@ void UserControl::AcceptClicked()
 {
     QPushButton *button = qobject_cast<QPushButton*>(sender());
     int user_index = button->property("index").toInt();
+    changeUserRole(user_index, 1);
+    update();
+}
+
+void UserControl::banClicked()
+{
+    QPushButton *button = qobject_cast<QPushButton*>(sender());
+    int user_index = button->property("index").toInt();
+    changeUserRole(user_index, 4);
+    update();
+}
+
+void UserControl::unbanClicked()
+{
+    QPushButton *button = qobject_cast<QPushButton*>(sender());
+    int user_index = button->property("index").toInt();
+    changeUserRole(user_index, 2);
+    update();
+}
+
+void UserControl::promClicked()
+{
+    QPushButton *button = qobject_cast<QPushButton*>(sender());
+    int user_index = button->property("index").toInt();
+    changeUserRole(user_index, 1);
+    update();
 }

@@ -22,6 +22,9 @@ private slots:
     void update();
     void CancelClicked();
     void AcceptClicked();
+    void banClicked();
+    void unbanClicked();
+    void promClicked();
 };
 
 #endif // USERCONTROL_H
