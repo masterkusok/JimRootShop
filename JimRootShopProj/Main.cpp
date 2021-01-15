@@ -15,9 +15,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-    //Search srch;
-    //srch.show();
-//    addguitars gitar;
-//    gitar.show();
+    w.setWindowTitle("Guitar Shop Jim Root's Kadyk");
+    QIcon winIcon("Icons\\main.ico");
+    w.setWindowIcon(winIcon);
     return a.exec();
 }
