@@ -68,13 +68,14 @@ std::vector<Instrument> ParseGuitars(){
         std::getline(ReadFile, reader);
         current_guitar.descritp = reader;
         vect.push_back(current_guitar);
+
     }
     return vect;
 }
 
 int CheckUsers(std::vector<User> Arr, std::string password, std::string login){
     bool checking = true;
-    for(int i = 0; i < getNumberOfUsers(); i++){
+    for(int i = 0; i < Arr.size(); i++){
         if(Arr[i].login == login && Arr[i].password == password){
             checking = false;
             return Arr[i].role;
@@ -164,7 +165,7 @@ void DeleteGuitar(Instrument guitar){
     std::ofstream WriteFile;
     WriteFile.open("Files/Temp.csv");
     ReadFile.open("Files/Guitars.csv");
-    for(int i = 0; ReadFile.good(); i++){
+    for(int i = 0; i < Guitars.size(); i++){
         std::string reader;
         if(i !=index){
 
@@ -188,9 +189,10 @@ void DeleteGuitar(Instrument guitar){
 
 
             std::getline(ReadFile, reader);
-            WriteFile << reader << std::endl;
-
-
+            WriteFile << reader;
+            if(i != Guitars.size()-2){
+                WriteFile << std::endl;
+            }
         }
         else{
             std::getline(ReadFile, reader);
@@ -213,6 +215,7 @@ void DeleteGuitar(Instrument guitar){
     std::remove("Files/Guitars.csv");
     std::rename("Files/Temp.csv", "Files/Guitars.csv");
 }
+
 std::vector <std::string> getAllGuitarBrands(){
     std::vector <Instrument> Guitars = ParseGuitars();
     std::vector <std::string> allBrands;

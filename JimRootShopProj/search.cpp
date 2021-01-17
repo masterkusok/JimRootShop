@@ -64,11 +64,14 @@ void Search::returnToSearch()
 void Search::on_pushButton_clicked()
 {
     emit returnToMenu();
+    update();
 }
 
 void Search::recieveData(User user)
 {
     UserToSend = user;
+
+    update();
 }
 
 void Search::update()

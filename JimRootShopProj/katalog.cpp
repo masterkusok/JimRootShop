@@ -106,6 +106,7 @@ void Katalog::buttonClicked(){
 void Katalog::recieveData(User user)
 {
     userToSend = user;
+    update();
 }
 
 void Katalog::backToKatalog()
@@ -122,6 +123,7 @@ Katalog::~Katalog()
 void Katalog::on_returnToMenuButton_clicked()
 {
     emit backToMainMenu();
+    update();
 }
 
 

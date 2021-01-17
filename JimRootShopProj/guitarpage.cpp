@@ -10,14 +10,14 @@ GuitarPage::GuitarPage(QWidget *parent) :
 
     ui->setupUi(this);
     connect(rmv, SIGNAL(accepted()), this, SLOT(removeGuitar()));
-
 }
 GuitarPage::~GuitarPage()
 {
     delete ui;
 }
+Instrument current_guitar;
 void GuitarPage::recieveData(Instrument guitar, User user){
-    std::cout << user.role;
+    current_guitar = guitar;
     if(user.role != 1){
         ui->removBtn->hide();
     }
@@ -60,3 +60,4 @@ void GuitarPage::on_removBtn_clicked()
 {
     rmv->show();
 }
+

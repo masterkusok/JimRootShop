@@ -15,7 +15,6 @@ addguitars::~addguitars()
 {
     delete ui;
 }
-
 void addguitars::on_addGuitarButton_clicked()
 {
     std::vector<Instrument> Guitars = ParseGuitars();
@@ -37,10 +36,10 @@ void addguitars::on_addGuitarButton_clicked()
        name != "" && name != " " &&
        price != "" && price != " " &&
        material != "" && material != " " &&
-       description != "" && description != " " &&
-       img_path != "" && img_path != " "){
-       addGuitar(brand,shape,name,price,material,imgPat.toStdString(),description);
-       QMessageBox::information(this, "Adding guitar", "Guitar added successfully");
+       description != "" && description != " "
+       &&img_path != "" && img_path != " "){
+       addGuitar(brand, shape, name, price, material, imgPat.toStdString(), description);
+       QMessageBox::information(this, "Adding guitar","Guitar Added succesfully");
     }
     else{
         QMessageBox::information(this, "Adding guitar","You didn't fill all the fields");
@@ -59,3 +58,4 @@ void addguitars::on_goBack_clicked()
 {
     emit goBack();
 }
+

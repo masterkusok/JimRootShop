@@ -21,6 +21,7 @@ public:
     ~MainWindow();
 signals:
     void sendData(User user);
+    void addgiSendData(int openCode, Instrument guitar);
 private slots:
     void showMenu();
     void showKatalog();

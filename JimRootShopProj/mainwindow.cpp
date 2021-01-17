@@ -51,6 +51,7 @@ void MainWindow::showMenu()
 
 void MainWindow::showKatalog()
 {
+    ktlg = new Katalog();
     ui->stackedWidget->setCurrentIndex(3);
 }
 
@@ -64,10 +65,11 @@ void MainWindow::on_loginConfirm_clicked()
     std::string login = ui->loginLogin->text().toStdString();
     std::string password = ui->loginPassword->text().toStdString();
 
-    if(CheckUsers(Users, password, login) >= 0){
-        UserThatLogined = getUserInformationByLoginAndPassword(login,password);
-        if(UserThatLogined.role!=4){
+    if(CheckUsers(Users, password, login) > 0){
+        User ban_check_user = getUserInformationByLoginAndPassword(login,password);
+        if(ban_check_user.role !=4){
             ui->stackedWidget->setCurrentIndex(2);
+            UserThatLogined = getUserInformationByLoginAndPassword(login,password);
         }
         else{
             QMessageBox::information(this, "Authorize", "This user is banned");
@@ -120,6 +122,7 @@ void MainWindow::on_regConfirm_clicked()
 
 void MainWindow::showSearch()
 {
+    srch = new Search();
     ui->stackedWidget->setCurrentIndex(4);
 }
 void MainWindow::showMainWindow(){
@@ -135,5 +138,7 @@ void MainWindow::showUserControl()
     ui->stackedWidget->setCurrentIndex(5);
 }
 void MainWindow::showAddGuitar(){
+    Instrument guitar;
+    emit addgiSendData(0, guitar);
     ui->stackedWidget->setCurrentIndex(6);
 }

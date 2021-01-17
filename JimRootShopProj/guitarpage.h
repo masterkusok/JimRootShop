@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "Header.h"
 #include "removingdialog.h"
+#include "addguitars.h"
 namespace Ui {
 class GuitarPage;
 }

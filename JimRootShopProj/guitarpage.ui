@@ -95,28 +95,6 @@ QPushButton:hover{
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="editButton">
-        <property name="font">
-         <font>
-          <family>Segoe UI Black</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">margin: 0;
-padding: 0;</string>
-        </property>
-        <property name="text">
-         <string>Edit</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="removBtn">
         <property name="font">
          <font>
